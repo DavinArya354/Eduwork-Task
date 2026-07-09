@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        *,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+<head>
+    <style>
+    h2 {
+        font-family: Helvetica;
+        margin-top: 20px;
+    }
+    .sticky {
+        position: sticky;
+        top: 0;
+    }
+    .li-navbar:hover {
+        background-color: #A2EF44;
+        transition: ease-in-out .3s;
+        font-size: 25px;
+        border-radius: 5px;
+    }
+    td.biodata {
+        font-size: large;
+        font-weight: 600;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        padding: 10px;
+        padding-left: 100px;
+        padding-right: 100px;
+        border-radius: 10px;
+    }
+    td.portofolio {
+        font-size: large;
+        font-weight: 600;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        padding: 10px;
+        padding-left: 30px;
+        padding-right: 30px;
+        border-spacing: 10px;
+        border-radius: 10px;
+    }
+    td:nth-child(odd) {
+        background-color: lightyellow;
+        border: 1px solid greenyellow;
+    }
+    td:nth-child(even) {
+        background-color: white;
+        border: 1px solid lightsteelblue;
+    }
+    table {
+        align-content: center;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border-spacing: 20px 15px;
+    }
+</style>
+    <title>Exercise</title>
+</head>
+<body>
+    <div style="size: 100%; height: 100vh;"> <!--container-->
+    <!-- Navigation -->
+    <div class="sticky" style="width: 100%; background-color: #08085E;
+                font-family: sans-serif; font-weight: bold;
+                height: 10vh; border-bottom: 3px solid #FFF07A;">
+        <!--ul-navbar--> 
+        <ul style="display: flex; height: 60px;
+                    justify-content: center; align-items: center;"> 
+            <!--li-navbar-->       
+            <li class="li-navbar" style="list-style-type: none; padding: 10px;
+                        margin: 5px; font-size: 30px;">
+                <a href="#" style="color: white;
+                text-decoration: none;" style:hover>Home</a>
+            </li>
+            <li class="li-navbar" style="list-style-type: none; padding: 10px;
+                        margin: 5px; font-size: 30px;">
+                <a href="about.html" style="color: white;
+                text-decoration: none;">About Me</a>
+            </li>
+            <li class="li-navbar" style="list-style-type: none; padding: 10px;
+                        margin: 5px; font-size: 30px;">
+                <a href="contact.html" style="color: white;
+                text-decoration: none;" >Contact</a>
+            </li>
+        </ul>
+    </div>
+    <!-- Navigation End -->
+    <!-- Content -->
+    <div style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                display: flex; flex-direction: row-reverse;
+                justify-content: space-evenly;
+                align-items: center; padding: 60px;"> <!--content-->
+        <img src="photo_2026-07-09_14-18-46.jpg"
+                style="width: 20%; height: 20%;
+                border: 3px outset darkslateblue;">
+        <div style="font-size: 20px; font-weight: 600;"> <!--intro-->
+            <h1>Hi, I'm Davin Arya</h1><br>
+                I'm a Web Developer.<br>
+                I also mastering Graphic Design.<br>
+                I've experienced at Cyber Security for 2 years,<br>
+                Especially in Software Pentester.<br>
+                I'm ready for job and project.<br>
+                Enjoy my Portfolio!
+        <div style="display: flex; gap: 30px; 
+                    padding-top: 25px; list-style: none;"> <!--link-sosmed-->
+            <li style="font-family: sans-serif; font-weight: 600;"> <!--li-sosmed-->
+                <img src="YouTube Icon.png" class="img-sosmed">
+            </li>
+            <li>
+                <img src="WhatsApp Icon.png" class="img-sosmed">
+            </li>
+            <li>
+                <img src="Instagram Icon.png" class="img-sosmed">
+            </li>
+            <li>
+                <img src="X Twitter Icon.png" class="img-sosmed">
+            </li>
+        </div>
+        </div>
+    </div>
+
+    <span style="display: flex; justify-content: center;
+                align-items: center; background-color: greenyellow;">
+        <!--About Me-->
+        <div style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    display: flex; justify-content: space-evenly;
+                    align-items: center; padding: 20px; font-size: 20px;">
+            <h1>About Me</h1>
+        </div>
+    </span>
+
+    <h2 align="center">A brief introduction about myself</h2>
+    <span style="display: flex; justify-content: center;">
+        <table align="center">
+            <tr>
+                <td class="biodata">Davin Arya Kusuma</td>
+                <td class="biodata">SMKN 1 Jombang</td>
+                <td class="biodata">Graphic Designer</td>
+            </tr>
+            <tr>
+                <td class="biodata">@davinarya._</td>
+                <td class="biodata">Hobi Editing</td>
+                <td class="biodata">Jombang</td>
+            </tr>
+        </table>
+    </span>
+    
+    <span style="display: flex; justify-content: center;
+                align-items: center; background-color: greenyellow;">
+        <!--About Me-->
+        <div style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    display: flex; justify-content: space-evenly;
+                    align-items: center; padding: 20px; font-size: 20px;">
+            <h1>Portfolio</h1>
+        </div>
+    </span>
+
+    <h2 align="center">Some Portfolio I've Made</h2>
+    <span style="display: flex; justify-content: center;">
+        <table align="center">
+            <tr>
+                <td class="portofolio"><img src="Portfolio Design/Koenigsegg Jesko Absolut.jpg" width="70%" height="70%"><p>Proyek 1</p><p>Poster Hypercar</p></td>
+                <td class="portofolio"><img src="Portfolio Design/F-22 Raptor T-Shirt.jpg" width="75%" height="75%"><p>Proyek 2</p><p>Poster Fighter Jet</p></td>
+                <td class="portofolio"><img src="Portfolio Design\Taman Kebon Ratu.jpg" width="70%" height="70%"><p>Proyek 3</p><p>Poster Wisata</p></td>
+            </tr>
+            <tr>
+                <td class="portofolio"><img src="Portfolio Design/Antares.jpg" width="70%" height="70%"><p>Proyek 4</p><p>Lockheed Martin</p></td>
+                <td class="portofolio"><img src="Portfolio Design/Arcturus.jpg" width="70%" height="70%"><p>Proyek 5</p><p>Lockheed Martin</p></td>
+                <td class="portofolio"><img src="Portfolio Design/Sirius.jpg" width="70%" height="70%"><p>Proyek 6</p><p>Lockheed Martin</p></td>
+            </tr>
+        </table>
+    </span>
+
+    <!-- Content End -->
+    <!-- Footer -->
+    <div style="background-color: #08085E; width: 100%;
+                display: flex; justify-content: center; position: sticky; bottom: 0;">
+        <div style="font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    font-size: 20px; font-style: italic; color: white;">
+                    Saya harap portofolio ini dapat bermanfaat XD
+        </div>
+    </div>
+    <!-- Footer End -->
+    </div>
+</body>
+</html>
