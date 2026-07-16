@@ -671,3 +671,11 @@ img {
         padding:18px;
     }
 }
+
+@media (max-width: 768px) {
+    .foot {
+        font-size: clamp(12px, 3vw, 16px);
+        text-align: center;
+        padding: 6px 10px;
+    }
+}
