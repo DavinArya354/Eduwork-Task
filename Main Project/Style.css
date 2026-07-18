@@ -39,16 +39,12 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     position: sticky;
     top: 0;
     z-index: 1000;
-
     width: 100%;
     min-height: 80px;
-
     padding: 0 5%;
-
     background-color: #08085E;
     border-bottom: 3px solid #FFF07A;
 }
@@ -57,9 +53,7 @@ img {
     display: flex;
     align-items: center;
     gap: 4px;
-
     margin-left: 0;
-
     font-size: clamp(1.2rem, 2vw, 1.6rem);
 }
 
@@ -79,11 +73,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
     gap: 15px;
-
     list-style: none;
-
     margin-right: 0;
 }
 
@@ -93,16 +84,12 @@ img {
 
 .navigation li a {
     display: block;
-
     padding: 10px 18px;
-
     color: white;
     text-decoration: none;
-
     font-family: sans-serif;
     font-size: clamp(16px, 1.2vw, 22px);
     font-weight: bold;
-
     transition: .3s;
 }
 
@@ -121,92 +108,60 @@ img {
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-
     max-width: 1400px;
     margin: auto;
-
     padding: 80px 5%;
     gap: 60px;
-
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 .img-profile {
-
     width: 350px;
     max-width: 100%;
     aspect-ratio: 1/1;
-
     object-fit: cover;
-
     border: 3px outset darkslateblue;
     border-radius: 12px;
-
     transition: .3s;
 }
 
 .img-profile:hover{
-
     transform: scale(1.03);
-
 }
 
 .intro{
-
     flex:1;
-
     font-size: clamp(17px,1.4vw,22px);
-
     font-weight:600;
-
     line-height:1.8;
-
 }
 
 .intro h1{
-
     font-size: clamp(2rem,4vw,3.5rem);
-
     line-height:1.2;
-
     margin-bottom:15px;
-
 }
 
 .link-sosmed{
-
     display:flex;
-
     gap:25px;
-
     margin-top:30px;
-
     list-style:none;
-
 }
 
 .link-sosmed li{
-
     transition:.3s;
-
     cursor:pointer;
-
 }
 
 .link-sosmed li:hover{
-
     transform:translateY(-5px);
-
 }
 
 .img-sosmed{
-
     width:32px;
-
     height:32px;
-
     object-fit:contain;
-
 }
 
 /* ===========================
@@ -214,36 +169,24 @@ img {
 =========================== */
 
 .bar {
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     background: greenyellow;
-
     padding: 22px;
-
     margin-top: 20px;
-
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 .bar h1 {
-
     font-size: clamp(2rem, 3vw, 2.6rem);
-
 }
 
 .section-title {
-
     text-align: center;
-
     margin: 30px 20px;
-
     font-size: clamp(1.2rem, 2vw, 2rem);
-
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-
 }
 
 /* ===========================
@@ -251,69 +194,42 @@ img {
 =========================== */
 
 .biodata-container {
-
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     max-width: 1200px;
-
     margin: auto;
-
     gap: 25px;
-
     padding: 20px 5% 50px;
-
 }
 
 .biodata-item {
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     text-align: center;
-
     min-height: 90px;
-
     padding: 20px;
-
     border-radius: 12px;
-
     font-size: clamp(16px, 1.3vw, 22px);
-
     font-family: "Courier New", Courier, monospace;
-
     font-weight: bold;
-
     transition: .3s;
 
 }
 
 .biodata-item:hover {
-
     transform: translateY(-6px);
-
     box-shadow: 0 8px 18px rgba(0,0,0,.15);
-
 }
 
 .biodata-item:nth-child(odd) {
-
     background: lightyellow;
-
     border: 1px solid greenyellow;
-
 }
 
 .biodata-item:nth-child(even) {
-
     background: white;
-
     border: 1px solid lightsteelblue;
-
 }
 
 /* ===========================
@@ -333,12 +249,9 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     padding: 22px;
     border-radius: 14px;
-
     text-align: center;
-
     transition: .3s ease;
 }
 
@@ -366,59 +279,37 @@ img {
 =========================== */
 
 .portfolio-image-box{
-
     width:100%;
     height:320px;
-
     display:flex;
-
     justify-content:center;
     align-items:center;
-
     background:white;
-
     border-radius:10px;
-
     margin-bottom:18px;
-
     overflow:hidden;
-
 }
 
 .portfolio-image{
-
     max-width:100%;
     max-height:100%;
-
     width:auto;
     height:auto;
-
     object-fit:contain;
-
     display:block;
-
 }
 
 .proyek{
-
     font-size:22px;
-
     color:#08085E;
-
     font-weight:bold;
-
     margin-bottom:8px;
-
 }
 
 .portfolio-item p:last-child{
-
     color:#555;
-
     font-size:17px;
-
     font-family:Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-
 }
 
 #hire-me {
@@ -477,11 +368,11 @@ img {
 
 @media (max-width:768px){
     .wrapper{
-        flex-direction:column;
-        justify-content:center;
+        flex-direction:row;
+        justify-content:flex-end;
         align-items:center;
         height:auto;
-        padding:20px;
+        padding:15px;
     }
 
     .brand{
@@ -490,7 +381,7 @@ img {
 
     .navigation{
         width:100%;
-        justify-content:center;
+        justify-content:flex-end;
         flex-wrap:wrap;
     }
 
@@ -504,8 +395,14 @@ img {
 ========================================= */
 
 @media (max-width:480px){
+    .wrapper{
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+    }
+
     .brand{
-        font-size:1.1rem;
+        font-size: 15px;
     }
 
     .navigation{
@@ -514,7 +411,7 @@ img {
 
     .navigation li a{
         padding:8px 12px;
-        font-size:15px;
+        font-size:12px;
     }
 }
 
@@ -535,7 +432,6 @@ img {
 
 
 @media (max-width:768px){
-
     .content{
         flex-direction:column;
         text-align:center;
