@@ -13,8 +13,10 @@
     <meta name="description" content="Personal blog portfolio of graphic design & fullstack projects">
     <meta name="author" content="Davin Arya">
     <meta name="keywords" content="Portfolio, Graphic Design, Fullstack">
-    <title>Exercise</title>
-    <link rel="stylesheet" href="home.css">
+    <title>Portfolio of Davin Arya</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.css">
+    <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <div style="width: 100%;"> <!--container-->
@@ -41,27 +43,27 @@
     <!-- Navigation End -->
     <!-- Content -->
     <div class="content">
-            <img src="photo_2026-07-09_14-18-46.jpg" class="img-profile">
+            <img src="../Resources/photo_2026-07-09_14-18-46.jpg" class="img-profile">
         <div class="intro">
             <h1>Hi, I'm Davin Arya</h1><br>
-                I'm a Web Developer.<br>
-                I also mastering Graphic Design.<br>
-                I've experienced at Cyber Security for 2 years,<br>
-                Especially in Software Pentester.<br>
-                I'm ready for job and project.<br>
-                Enjoy my Portfolio!
+                <p>I'm a Web Developer.</p>
+                <p>I also mastering Graphic Design.</p>
+                <p>I've experienced at Cyber Security for 2 years,</p>
+                <p>Especially in Software Pentester.</p>
+                <p>I'm ready for job and project.</p>
+                <p>Enjoy my Portfolio!</p>
                 <div class="link-sosmed">
                 <li>
-                    <img src="YouTube Icon.png" class="img-sosmed">
+                    <img src="../Resources/YouTube Icon.png" class="img-sosmed">
                 </li>
                 <li>
-                    <img src="WhatsApp Icon.png" class="img-sosmed">
+                    <img src="../Resources/Instagram Icon.png" class="img-sosmed">
                 </li>
                 <li>
-                    <img src="Instagram Icon.png" class="img-sosmed">
+                    <img src="../Resources/WhatsApp Icon.png" class="img-sosmed">
                 </li>
                 <li>
-                    <img src="X Twitter Icon.png" class="img-sosmed">
+                    <img src="../Resources/X Twitter Icon.png" class="img-sosmed">
                 </li>
                 </div>
         </div>
@@ -77,7 +79,6 @@
         <div class="biodata-item">Davin Arya Kusuma</div>
         <div class="biodata-item">SMKN 1 Jombang</div>
         <div class="biodata-item">Graphic Designer</div>
-
         <div class="biodata-item">@davinarya._</div>
         <div class="biodata-item">Hobi Editing</div>
         <div class="biodata-item">Jombang</div>
@@ -90,7 +91,6 @@
 <h2 class="section-title">Some Portfolio I've Made</h2>
 
 <div class="portfolio-container">
-
     <div class="portfolio-item">
         <img src="..\Portfolio Design\Koenigsegg Jesko Absolut.jpg" alt="Proyek 1">
         <p class="proyek">Proyek 1</p>
@@ -126,7 +126,31 @@
         <p class="proyek">Proyek 6</p>
         <p>Poster Bintang</p>
     </div>
+</div>
 
+<!-- Button trigger modal -->
+<div class="modalbutton">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    What software did I use?
+    </button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Software</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        I use Adobe Photoshop CC 2020
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
 </div>
 
     <!-- Content End -->
