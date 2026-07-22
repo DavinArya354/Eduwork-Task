@@ -1,7 +1,6 @@
 /* ===========================
    GLOBAL
 =========================== */
-
 *,
 *::before,
 *::after {
@@ -31,74 +30,104 @@ img {
     width: 100%;
 }
 
-/* ===========================
+/* =========================
    NAVBAR
-=========================== */
+========================= */
 
-.wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    min-height: 80px;
-    padding: 0 5%;
-    background-color: #08085E;
-    border-bottom: 3px solid #FFF07A;
+.navbar-custom{
+    background:#08085E;
+    border-bottom:3px solid #FFF07A;
+    min-height:80px;
+    font-weight:bold;
+    transition:.3s;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-left: 0;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
+/* Logo */
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
 }
 
-.firstname {
-    color: white;
-    font-weight: 700;
-    font-family: "Outfit", sans-serif;
+.firstname{
+    color:#fff;
+    font-family:"Outfit",sans-serif;
+    font-size:30px;
+    font-weight:700;
+    text-transform:capitalize;
 }
 
-.lastname {
-    color: #A2EF44;
-    font-family: "Cinzel", serif;
-    font-size: 0.9rem;
+.lastname{
+    color:#A2EF44;
+    font-family:"Cinzel",serif;
+    font-size:30px;
+    font-weight:700;
+    text-transform:capitalize;
 }
 
-.navigation {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 15px;
-    list-style: none;
-    margin-right: 0;
+/* Menu */
+
+.navbar-nav{
+    gap:15px;
 }
 
-.navigation li {
-    list-style: none;
+.nav-link{
+    color:#fff !important;
+    font-size:20px;
+    padding:10px 18px !important;
+    transition:.35s;
+    border-radius:8px;
 }
 
-.navigation li a {
-    display: block;
-    padding: 10px 18px;
-    color: white;
-    text-decoration: none;
-    font-family: sans-serif;
-    font-size: clamp(16px, 1.2vw, 22px);
-    font-weight: bold;
-    transition: .3s;
+.nav-link:hover{
+    color:#A2EF44 !important;
+    transform:translateY(-2px);
 }
 
-.navigation li:hover {
-    background-color: #A2EF44;
-    border-radius: 5px;
-    transform: scale(1.05);
-    box-shadow: 0 7px 5px rgba(0,0,0,.4);
+.nav-link.active{
+    color:#A2EF44 !important;
 }
+
+/* Hamburger */
+
+.custom-toggler{
+    border:2px solid #FFF07A;
+}
+
+.custom-toggler:focus{
+    box-shadow:none;
+}
+
+.navbar-toggler-icon{
+    filter:brightness(0) invert(1);
+}
+
+/* Responsive */
+
+@media(max-width:991px){
+
+    .navbar-collapse{
+        margin-top:15px;
+        text-align:center;
+        background:#08085E;
+        border-radius:10px;
+        padding:15px;
+    }
+
+    .navbar-nav{
+        gap:10px;
+    }
+
+    .firstname,
+    .lastname{
+        font-size:24px;
+    }
+
+}
+
+
 /* ===========================
    HERO SECTION
 =========================== */
@@ -142,6 +171,12 @@ img {
     margin-bottom:15px;
 }
 
+.intro p{
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 70%;
+}
+
 .link-sosmed{
     display:flex;
     gap:25px;
@@ -159,8 +194,8 @@ img {
 }
 
 .img-sosmed{
-    width:32px;
-    height:32px;
+    width:30px;
+    height:30px;
     object-fit:contain;
 }
 
@@ -204,17 +239,22 @@ img {
 
 .biodata-item {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     text-align: center;
     min-height: 90px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     font-size: clamp(16px, 1.3vw, 22px);
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
+    font-family: "Outfit",sans-serif;
     transition: .3s;
+}
 
+.biodata-item p {
+    color: #08085E;
+    font-weight: bold;
+    font-size: clamp(12px, 1.2vw, 18px);
+    margin-bottom:8px;
 }
 
 .biodata-item:hover {
@@ -223,12 +263,12 @@ img {
 }
 
 .biodata-item:nth-child(odd) {
-    background: lightyellow;
+    background: #FFFDE7;
     border: 1px solid greenyellow;
 }
 
 .biodata-item:nth-child(even) {
-    background: white;
+    background: whitesmoke;
     border: 1px solid lightsteelblue;
 }
 
@@ -300,19 +340,20 @@ img {
 }
 
 .proyek{
-    font-size:22px;
+    font-size:18px;
     color:#08085E;
     font-weight:bold;
+    margin-top: 8px;
     margin-bottom:8px;
 }
 
 .portfolio-item p:last-child{
     color:#555;
     font-size:17px;
-    font-family:Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-family:"Outfit", sans-serif;
 }
 
-#hire-me {
+.hire-me {
     width: 90px;
     height: 4px;
     display: flex;
@@ -326,12 +367,21 @@ img {
     border-radius: 30px;
 }
 
+.modalbutton {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.modal-footer button a {
+    color: white;
+}
+
 .footer {
     background-color: #08085E;
     width: 100%;
     display: flex;
     justify-content: center;
-    position: fixed;
     bottom: 0;
 }
 
