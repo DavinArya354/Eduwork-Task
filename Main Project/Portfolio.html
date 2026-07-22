@@ -16,30 +16,58 @@
     <title>Portfolio of Davin Arya</title>
     <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.css">
-    <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
-</head>
+    </head>
+<script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 <body>
     <div style="width: 100%;"> <!--container-->
     <!-- Navigation -->
-    <div class="wrapper">
-        <!--ul-navbar-->
-        <div class="brand">
-            <div class="firstname">Davin</div>
-            <div class="lastname">Artwork</div>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container-fluid px-4">
+
+        <!-- Logo -->
+        <a class="navbar-brand brand" href="#">
+            <span class="firstname">Davin</span>
+            <span class="lastname">Artwork</span>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="navbar-toggler custom-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- Menu -->
+        <div class="collapse navbar-collapse justify-content-end"
+            id="navbarMenu">
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#hero">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+
+            </ul>
+
         </div>
-        <ul class="navigation"> 
-            <!--li-navbar-->       
-            <li>
-                <a href="#"style:hover>Home</a>
-            </li>
-            <li>
-                <a href="about.html">About Me</a>
-            </li>
-            <li>
-                <a href="contact.html">Contact</a>
-            </li>
-        </ul>
+
     </div>
+</nav>
     <!-- Navigation End -->
     <!-- Content -->
     <div class="content">
@@ -76,12 +104,12 @@
     <h2 class="section-title">A brief introduction about myself</h2>
 
     <div class="biodata-container">
-        <div class="biodata-item">Davin Arya Kusuma</div>
-        <div class="biodata-item">SMKN 1 Jombang</div>
-        <div class="biodata-item">Graphic Designer</div>
-        <div class="biodata-item">@davinarya._</div>
-        <div class="biodata-item">Hobi Editing</div>
-        <div class="biodata-item">Jombang</div>
+        <div class="biodata-item"><p>Nama</p>Davin Arya Kusuma</div>
+        <div class="biodata-item"><p>Alumni</p>SMKN 1 Jombang</div>
+        <div class="biodata-item"><p>Profesi</p>Graphic Designer</div>
+        <div class="biodata-item"><p>Instagram</p>@davinarya._</div>
+        <div class="biodata-item"><p>Hobi</p>Editing</div>
+        <div class="biodata-item"><p>Domisili</p>Jombang</div>
 </div>
 
 <div class="bar">
@@ -94,37 +122,37 @@
     <div class="portfolio-item">
         <img src="..\Portfolio Design\Koenigsegg Jesko Absolut.jpg" alt="Proyek 1">
         <p class="proyek">Proyek 1</p>
-        <p>Poster Hypercar</p>
+        <p>Hypercar Poster</p>
     </div>
 
     <div class="portfolio-item">
         <img src="..\Portfolio Design\F-22 Raptor T-Shirt.jpg" alt="Proyek 2">
         <p class="proyek">Proyek 2</p>
-        <p>Poster Fighter Jet</p>
+        <p>Fighter Jet Poster</p>
     </div>
 
     <div class="portfolio-item">
         <img src="..\Portfolio Design\Taman Kebon Ratu.jpg" alt="Proyek 3">
         <p class="proyek">Proyek 3</p>
-        <p>Poster Wisata</p>
+        <p>City Park Poster</p>
     </div>
 
     <div class="portfolio-item">
         <img src="..\Portfolio Design\Antares.jpg" alt="Proyek 4">
         <p class="proyek">Proyek 4</p>
-        <p>Poster Bintang</p>
+        <p>Star Poster</p>
     </div>
 
     <div class="portfolio-item">
         <img src="..\Portfolio Design\Arcturus.jpg" alt="Proyek 5">
         <p class="proyek">Proyek 5</p>
-        <p>Poster Bintang</p>
+        <p>Star Poster</p>
     </div>
 
     <div class="portfolio-item">
         <img src="..\Portfolio Design\Sirius.jpg" alt="Proyek 6">
         <p class="proyek">Proyek 6</p>
-        <p>Poster Bintang</p>
+        <p>Star Poster</p>
     </div>
 </div>
 
@@ -147,7 +175,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-primary"><a href="https://photoshop.adobe.com">See more</a></button>
       </div>
     </div>
   </div>
@@ -157,7 +185,7 @@
     <!-- Footer -->
     <div class="footer">
         <div class="foot">
-        Saya harap portofolio ini dapat bermanfaat XD
+        I hope this portfolio can provide your company needs. XD
         </div>
     </div>
     <!-- Footer End -->
