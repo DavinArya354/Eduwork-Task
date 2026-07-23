@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <style>
-        *,
-        html {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +7,11 @@
     <meta name="author" content="Davin Arya">
     <meta name="keywords" content="Portfolio, Graphic Design, Fullstack">
     <title>Portfolio of Davin Arya</title>
-    <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Outfit&display=swap" rel="stylesheet">
     </head>
 <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 <body>
@@ -35,37 +31,27 @@
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarMenu">
-
             <span class="navbar-toggler-icon"></span>
-
         </button>
 
         <!-- Menu -->
         <div class="collapse navbar-collapse justify-content-end"
             id="navbarMenu">
-
             <ul class="navbar-nav">
-
                 <li class="nav-item">
                     <a class="nav-link active" href="#hero">Home</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="#about">About</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="#portfolio">Portfolio</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact</a>
                 </li>
-
             </ul>
-
         </div>
-
     </div>
 </nav>
     <!-- Navigation End -->
@@ -98,7 +84,7 @@
     </div>
 
     <div class="bar">
-        <h1>About Me</h1>
+        <h1 id="about">About Me</h1>
     </div>
 
     <h2 class="section-title">A brief introduction about myself</h2>
@@ -113,7 +99,7 @@
 </div>
 
 <div class="bar">
-    <h1>Portfolio</h1>
+    <h1 id="portfolio">Portfolio</h1>
 </div>
 
 <h2 class="section-title">Some Portfolio I've Made</h2>
