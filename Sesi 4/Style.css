@@ -104,11 +104,6 @@ img {
     filter:brightness(0) invert(1);
 }
 
-/* Responsive */
-
-
-
-
 /* ===========================
    HERO SECTION
 =========================== */
@@ -164,58 +159,7 @@ img {
     object-fit:contain;
 }
 
-@media (max-width:991.98px){
-    .hero-content{
-        flex-direction:column !important;
-        text-align:center;
-        gap:35px;
-    }
 
-    .intro{
-        width:100%;
-    }
-
-    .link-sosmed{
-        justify-content:center;
-    }
-
-    .img-profile{
-        width:280px;
-    }
-}
-
-@media (max-width:767.98px){
-    .img-profile{
-        width:250px;
-    }
-}
-
-@media (max-width:575.98px){
-    .hero-content{
-        padding-inline:15px;
-    }
-
-    .img-profile{
-        width:200px;
-    }
-
-    .intro{
-        font-size:16px;
-    }
-
-    .intro h1{
-        font-size:32px;
-    }
-
-    .link-sosmed{
-        gap:18px;
-    }
-
-    .img-sosmed{
-        width:28px;
-        height:28px;
-    }
-}
 
 /* ===========================
    ABOUT ME
@@ -426,6 +370,12 @@ img {
     color: white;
 }
 
+@media (max-width: 500px) {
+    .modalbutton .btn-primary{
+        font-size: 10px;
+    }
+}
+
 /* ===========================
    FOOTER
 =========================== */
@@ -445,85 +395,122 @@ img {
     color: white;
 }
 
-/* =========================================
-   TABLET
-========================================= */
+/* ===========================
+   NAVBAR
+=========================== */
 
-@media (max-width: 992px) {
+@media(max-width:991px){
 
-    .wrapper{
-        padding:0 30px;
-    }
-
-    .navigation{
-        gap:8px;
-    }
-
-    .navigation li a{
-        font-size:18px;
-        padding:10px 14px;
-    }
-}
-
-/* =========================================
-   SMARTPHONE
-========================================= */
-
-@media (max-width:768px){
-    .wrapper{
-        flex-direction:row;
-        justify-content:flex-end;
-        align-items:center;
-        height:auto;
+    .navbar-collapse{
+        margin-top:15px;
+        text-align:center;
+        background:#08085E;
+        border-radius:10px;
         padding:15px;
     }
 
-    .brand{
-        margin-bottom:15px;
+    .navbar-nav{
+        gap:10px;
     }
 
-    .navigation{
-        width:100%;
-        justify-content:flex-end;
-        flex-wrap:wrap;
+    .firstname,
+    .lastname{
+        font-size:24px;
     }
 
-    .navigation li a{
-        font-size:16px;
-    }
 }
 
-/* =========================================
-   HP KECIL
-========================================= */
+@media(max-width:767.98px){
 
-@media (max-width:480px){
-    .wrapper{
-        display: flex;
-        justify-content: flex-end;
-        flex-direction: row;
+    .navbar-collapse{
+        margin-top:15px;
+        text-align:center;
+        background:#08085E;
+        border-radius:8px;
+        padding:15px;
     }
 
-    .brand{
-        font-size: 15px;
+    .navbar-nav{
+        gap:10px;
     }
 
-    .navigation{
-        gap:5px;
+    .firstname,
+    .lastname{
+        font-size:18px;
     }
 
-    .navigation li a{
-        padding:8px 12px;
-        font-size:12px;
-    }
 }
 
+@media (max-width:767.98px){
+    .custom-toggler{
+        border:2px solid #FFF07A;
+    }
+
+    .custom-toggler:focus{
+        box-shadow:none;
+    }
+
+    .navbar-toggler-icon{
+        filter:brightness(0) invert(1);
+    }
+}
 
 /* ===========================
    HERO RESPONSIVE
 =========================== */
 
+@media (max-width:991.98px){
+    .hero-content{
+        flex-direction:column !important;
+        text-align:center;
+        gap:35px;
+    }
 
+    .intro{
+        width:100%;
+    }
+
+    .link-sosmed{
+        justify-content:center;
+    }
+
+    .img-profile{
+        width:280px;
+    }
+}
+
+@media (max-width:767.98px){
+    .img-profile{
+        width:250px;
+    }
+}
+
+@media (max-width:575.98px){
+    .hero-content{
+        padding-inline:15px;
+    }
+
+    .img-profile{
+        width:200px;
+    }
+
+    .intro{
+        font-size:16px;
+    }
+
+    .intro h1{
+        font-size:32px;
+    }
+
+    .link-sosmed{
+        gap:18px;
+    }
+
+    .img-sosmed{
+        width:28px;
+        height:28px;
+    }
+}
 
 /* ===========================
    ABOUT RESPONSIVE
@@ -611,10 +598,22 @@ img {
     }
 }
 
+/* ===========================
+   FOOTER RESPONSIVE
+=========================== */
+
 @media (max-width: 768px) {
     .foot {
         font-size: clamp(12px, 3vw, 16px);
         text-align: center;
         padding: 6px 10px;
     }
+}
+
+@media (max-width: 344px) {
+    .foot {
+        font-size: clamp(10px, 2vw, 14px);
+        text-align: center;
+        padding: 6px 10px;
+    }   
 }
