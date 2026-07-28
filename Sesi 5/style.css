@@ -6,7 +6,7 @@
 
 body{
     background:#f5f7fb;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:"Outfit", sans-serif;
 }
 
 /* ================= NAVBAR ================= */
@@ -26,7 +26,7 @@ body{
 
 /* ================= HERO ================= */
 .hero{
-    background:linear-gradient(135deg,#0d6efd,#4b8dff);
+    background:linear-gradient(135deg, slateblue, darkblue);
     color:white;
     padding:80px 0;
 }
@@ -52,8 +52,12 @@ body{
 }
 
 .card-header{
-    background:#0d6efd;
+    background:#3620ff;
     color:white;
+}
+
+.card-body .bg-primary{
+    background-color: chartreuse;
 }
 
 /* ================= BUTTON ================= */
