@@ -8,7 +8,7 @@
     <meta name="author" content="Arctic">
     <meta name="keywords" content="Arctic, Online Store, Online Shop, Tech, Setup">
 
-    <title>ArcticShop</title>
+    <title>ArcticStore</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Outfit&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- ================= NAVBAR ================= -->
@@ -114,6 +117,7 @@
 
                             <input
                                 type="text"
+                                id="searchInput"
                                 class="form-control"
                                 placeholder="Cari...">
                         </div>
@@ -123,12 +127,12 @@
                                 Kategori
                             </label>
 
-                            <select class="form-select">
-                                <option>Semua</option>
-                                <option>Laptop</option>
-                                <option>Smartphone</option>
-                                <option>Gaming</option>
-                                <option>Monitor</option>
+                            <select id="categoryFilter" class="form-select">
+                                <option value="Semua">Semua</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Smartphone">Smartphone</option>
+                                <option value="Aksesoris">Aksesoris</option>
+                                <option value="Monitor">Monitor</option>
                             </select>
                         </div>
 
@@ -137,12 +141,12 @@
                                 Harga
                             </label>
 
-                            <select class="form-select">
-                                <option>Semua</option>
-                                <option>< Rp500.000</option>
-                                <option>Rp500rb - Rp2jt</option>
-                                <option>Rp2jt - Rp5jt</option>
-                                <option>> Rp5jt</option>
+                            <select id="priceFilter" class="form-select">
+                                <option value="all">Semua</option>
+                                <option value="0-500000">< Rp500.000</option>
+                                <option value="500000-2000000">Rp500rb - Rp2jt</option>
+                                <option value="2000000-5000000">Rp2jt - Rp5jt</option>
+                                <option value="5000000+">> Rp5jt</option>
                             </select>
                         </div>
                     </div>
@@ -158,11 +162,12 @@
                         class="badge bg-primary"
                         id="product-count">
                     </span>
-                    <select class="form-select w-auto">
-                        <option>Urutkan</option>
-                        <option>Harga Terendah</option>
-                        <option>Harga Tertinggi</option>
-                        <option>Nama A-Z</option>
+                    <select id="sortFilter" class="form-select w-auto">
+                        <option value="">Urutkan</option>
+                        <option value="low-high">Harga Terendah</option>
+                        <option value="high-low">Harga Tertinggi</option>
+                        <option value="az">Nama A-Z</option>
+                        <option value="za">Nama Z-A</option>
                     </select>
                 </div>
 
