@@ -14,6 +14,10 @@ body{
     background: #3620ff;
 }
 
+.nav-item{
+    padding-top: 5px;
+}
+
 .nav-link{
     font-weight:500;
     margin-left:10px;
@@ -22,6 +26,37 @@ body{
 
 .nav-link:hover{
     color:#ffc107 !important;
+}
+
+.cart-icon{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.cart-badge{
+    position: absolute;
+    top: -3px;
+    right: -10px;
+
+    min-width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #db091e;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    padding: 2px;
 }
 
 /* ================= HERO ================= */
@@ -56,13 +91,20 @@ body{
     color:white;
 }
 
-.card-body .bg-primary{
-    background-color: chartreuse;
+.card-header .badge{
+    background-color: #8f4df8;
 }
 
 /* ================= BUTTON ================= */
 .btn-warning{
     font-weight:bold;
+    background-color:#8f4df8;
+    border: #8f4df8;
+}
+
+.btn-warning:hover{
+    font-weight:bold;
+    background-color: #6c2fce;
 }
 
 /* ================= FOOTER ================= */
@@ -72,12 +114,12 @@ footer{
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:991px){
-.hero{
-    text-align:center;
-}
+    .hero{
+        text-align:center;
+    }
 
-.hero-img{
-    margin-top:40px;
-}
+    .hero-img{
+        margin-top:40px;
+    }
 
 }
