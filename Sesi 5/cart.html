@@ -6,18 +6,41 @@
     <title>Arctic Store Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Outfit&display=swap" rel="stylesheet">
     <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <div class="container py-5">
-        <h2 class="mb-4"> Keranjang Belanja</h2>
-        <div id="cart-items"></div>
-        <div class="text-end mt-4">
-            <h3 id="grand-total">Rp0</h3>
-            <a href="checkout.html" class="btn btn-warning">
-            Checkout
-            </a>
+    <div class="cart-container">
+        <div class="container py-5">
+            <span class="cart-head">
+            <h2 class="mb-4"> Keranjang</h2>
+            <button
+                class="btn"
+                onclick="clearCart()">
+                <i class="bi bi-trash"></i>
+                Kosongkan Keranjang
+            </button>
+            </span>
+            <div id="cart-items"></div>
+        </div>
+
+        <!-- ================= Ringkasan Belanja ================= -->
+        <div class="card col-lg-3">
+            <div class="card-body">
+                <h5>Ringkasan Belanja</h5>
+                <p>Total Barang</p>
+                <p>Total Qty</p>
+                <p>Subtotal</p>
+                <hr>
+                <h4>Total</h4>
+                <h3 id="grand-total">Rp0</h3>
+                <a href="checkout.html" class="btn btn-warning">
+                Checkout
+                </a>
+            </div>
         </div>
     </div>
     <script src="JS/cart.js"></script>
