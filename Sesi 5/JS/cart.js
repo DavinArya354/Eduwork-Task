@@ -48,6 +48,11 @@ function renderCart() {
 
                     <div class="row align-items-center">
 
+                        <input type="checkbox"
+                            class="form-check-input me-3 item-check"
+                            data-id="${item.id}"
+                            ${item.selected ? "checked" : ""}>
+
                         <!-- Gambar Produk -->
                         <div class="col-md-2">
                             <img
@@ -58,7 +63,7 @@ function renderCart() {
                         </div>
 
                         <!-- Informasi Produk -->
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <h5>${item.name}</h5>
                             <p>${item.category}</p>
                         </div>
@@ -94,10 +99,10 @@ function renderCart() {
                         <!-- Tombol Hapus -->
                         <div class="col-md-2 text-end">
                             <button
-                                class="btn btn-danger"
+                                class="btn"
                                 onclick="removeItem(${item.id})"
                             >
-                                Hapus
+                                <i class="bi bi-trash"></i>
                             </button>
                         </div>
 
@@ -115,6 +120,21 @@ function renderCart() {
 // Jalankan Pertama Kali
 // =========================
 renderCart();
+
+//Fungsi toggleSelect()
+function toggleSelect(id) {
+
+    const item = cart.find(item => item.id === id);
+
+    if (!item) return;
+
+    item.selected = !item.selected;
+
+    saveCart();
+
+    renderCart();
+
+}
 
 // =========================
 // Ubah Jumlah Barang
@@ -153,13 +173,40 @@ function changeQty(id, change) {
 // =========================
 // Hapus Barang
 // =========================
-function removeItem(id) {
-    cart = cart.filter(item => item.id !== id);
+function removeItem(id){
+    const confirmDelete = confirm(
+        "Yakin ingin menghapus produk ini?"
+    );
 
+    if(!confirmDelete){
+        return;
+    }
+
+    cart = cart.filter (item => item.id !== id)
     saveCart();
     updateCartBadge();
     renderCart();
 }
+
+function clearCart() {
+    if (cart.length === 0)
+        alert("Keranjang sudah kosong.");
+    return;
+
+    const confirmClear = confirm(
+        "Yakin ingin mengosongkan seluruh keranjang?"
+    );
+
+    if(!confirmClear){
+        return;
+    }
+
+    cart =[];
+    saveCart();
+    updateCartBadge();
+    renderCart();
+}
+
 
 // =========================
 // Fungsi Update Cart
@@ -180,6 +227,19 @@ function updateCartBadge() {
 
 document.addEventListener("DOMContentLoaded", () => {
     updateCartBadge();
+});
+
+//Event Listener Checkbox
+document.querySelectorAll(".item-check").forEach(checkbox => {
+
+    checkbox.addEventListener("change", function () {
+
+        const id = Number(this.dataset.id);
+
+        toggleSelect(id);
+
+    });
+
 });
 
 // =========================
