@@ -3,9 +3,10 @@ const products = [
     id: 1,
     name: "ASUS Vivobook 15",
     description: "Color: Cool Silver, AMD Ryzen™ 3 7320U Processor 2.4GHz, LPDDR5 16GB, SSD 512GB M.2.",
-    price: 8500000,
+    price: 11199000,
     category: "Laptop",
-    image: "https://id.store.asus.com/media/catalog/product/v/i/vivobook_pro_15_oled_k6502z_product_photo_2s_cool_silver_05_1.jpg"
+    image: "https://id.store.asus.com/media/catalog/product/v/i/vivobook_pro_15_oled_k6502z_product_photo_2s_cool_silver_05_1.jpg",
+    keywords: ["laptop", "AMD Ryzen 3", "asus", "vivobook", "ssd 512 GB"]
   },
   {
     id: 2,
@@ -13,15 +14,17 @@ const products = [
     description: 'ACER ASPIRE 5 A515-45-R49R [15.6"FHD/R5-5500U/8GB/512GB] BLACK (NX.A7ZSN.003)',
     price: 7800000,
     category: "Laptop",
-    image: "https://tse3.mm.bing.net/th/id/OIP.kipfYgqQpn-8spj2ok7bmQHaD4?r=0&pid=Api&P=0&h=180"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJZRGfvK610qVb6o5Dp24lcVbSGq43b-wgTYrLSg8H5g&s=10",
+    keywords: ["laptop", "AMD Ryzen 5", "acer", "aspire", "8/512"]
   },
   {
     id: 3,
     name: "Lenovo IdeaPad Slim 3",
-    description: 'Lenovo Ideapad Slim 3 14 Ryzen 3 7320U 8GB 512GB W11 + OHS 14" FHD.',
-    price: 7200000,
+    description: 'LENOVO IDEAPAD SLIM 3 14 I5 13420H 8GB 512GB W11+OHS+M365B 14.0WUXGA IPS BLIT 2Y PREM+2ADP BLU -7DID.',
+    price: 9900000,
     category: "Laptop",
-    image: "https://tse4.mm.bing.net/th/id/OIP.nZKxnvR0nIXDfUbsJMocVgHaE3?r=0&pid=Api&P=0&h=180"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZx5V5dzDgSea4XVrWBOcKDAdbdOhp7z2j1CchbN4nYQ&s=10",
+    keywords: ["laptop", "Intel Core i5", "lenovo", "ideapad slim", "8/512"]
   },
   {
     id: 4,
@@ -29,7 +32,8 @@ const products = [
     description: "13-inch MacBook Air: Apple M2 Chip with 8-core CPU, 8-core GPU, 16GB, 256GB, Starlight.",
     price: 18999000,
     category: "Laptop",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcBXYzAWzoIqZh-mri7CGCmoQDqiaNfx5zTPMLNXOcdw&s"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcBXYzAWzoIqZh-mri7CGCmoQDqiaNfx5zTPMLNXOcdw&s",
+    keywords: ["laptop", "Apple M2", "Macbook", "Air M2", "16/256"]
   },
   {
     id: 5,
@@ -37,7 +41,8 @@ const products = [
     description: "CPU, Intel® Core™ i7-1165G7. VGA, NVIDIA® GeForce® MX450. Display, 14″ Full HD IPS. RAM, 16 GB DDR4-3200 SDRAM.",
     price: 8900000,
     category: "Laptop",
-    image: "https://tanphat.com.vn/media/product/3144_hp_pavilion_14.jpg"
+    image: "https://tanphat.com.vn/media/product/3144_hp_pavilion_14.jpg",
+    keywords: ["laptop", "Intel Core i7", "HP", "pavilion", "nvidia mx450"]
   },
 
   {
@@ -51,23 +56,23 @@ const products = [
   {
     id: 7,
     name: "iPhone 17",
-    description: "Smartphone terbaru Apple.",
-    price: 19999000,
+    description: "iOS 26. Processor: Apple A19 Chip, 6-core CPU, 16-core Neural Engine, 6.3 Inch, Super Retina XDR, 48 MP Fusion Wide ƒ/1.6 with sensor-shift OIS, 100% Focus Pixels.",
+    price: 17999000,
     category: "Smartphone",
     image: "https://www.goimports.com.br/image/catalog/0%20novos%20produtos%202025/Iphones/iphone-17-storage-select-202509-black.png"
   },
   {
     id: 8,
-    name: "Xiaomi 16 Pro",
-    description: "Smartphone performa tinggi.",
-    price: 8999000,
+    name: "Xiaomi 15T Pro",
+    description: "Xiaomi 15T Pro 5G Android smartphone. Features 6.83″ display, Dimensity 9400+ chipset, 5500 mAh battery, 1024 GB storage, 12 GB RAM.",
+    price: 10599000,
     category: "Smartphone",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTggSBr81oSwAEan01iMxeQ_hCEj0CHrQrBOuQfRKuL3Q&s=10"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZPSVkQX-qTXCOURivEs7hT3LPINtpGfISZPvFEEimbw&s=10"
   },
   {
     id: 9,
     name: "OPPO Reno 15",
-    description: "Kamera jernih dan desain premium.",
+    description: "OLED Full HD+ display with Refresh Rate 120 Hz.Selfie Camera Ultra Wide 50 MP. Snapdragon 7 Gen 4 and 6500 mAh battery.",
     price: 6999000,
     category: "Smartphone",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPSt8cPCHQifnqe9-mzrpEIRDyT8eJ9Mji_qunkQ-lkw&s"
@@ -75,8 +80,8 @@ const products = [
   {
     id: 10,
     name: "Vivo V50",
-    description: "Smartphone tipis dengan baterai besar.",
-    price: 5499000,
+    description: " Features 6.77″ display, Snapdragon 7 Gen 3 chipset, 6000 mAh battery, 512 GB storage, 12 GB RAM, ZEISS 50 MP Potrait So Pro.",
+    price: 6499000,
     category: "Smartphone",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNU7hqYVeCSE_cTIQH8xgGzK-PbCS-VdCOoBmyxkORuQ&s=10"
   },
@@ -92,7 +97,7 @@ const products = [
   {
     id: 12,
     name: "Samsung Odyssey G5",
-    description: 'Samsung Odyssey G5 27" Curved Monitor Gaming QHD.',
+    description: 'Samsung Odyssey G5 27" Curved Monitor Gaming QHD, high refresh rate up to 165Hz–200Hz, and time respons 1ms (MPRT).',
     price: 4999000,
     category: "Monitor",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK3UPQqMqboZoEof5GN1I7TQVUQPyaUjmxC0oBkDjesA&s=10"
@@ -116,52 +121,52 @@ const products = [
   {
     id: 15,
     name: "AOC 24G2",
-    description: "Monitor Gaming IPS.",
+    description: "AOC’s 24G2 flat display redefines smooth gameplay. Equipped with 144Hz refresh rate and 1ms response time.",
     price: 2799000,
     category: "Monitor",
-    image: "https://placehold.co/600x400?text=AOC+Monitor"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9KfVxKLDxd0RXPAAlsS8tS1W_m1krGFdSDCB5UOKGaQ&s=10"
   },
 
   {
     id: 16,
-    name: "Logitech G502 X",
-    description: "Mouse Gaming RGB.",
-    price: 899000,
+    name: "Logitech G502 X Plus",
+    description: "Shop G502 X Plus Mouse. Features LIGHTFORCE hybrid optical-mechanical switch technology, power-saving play detection, 68% faster response, and 8-LED RGB.",
+    price: 2500000,
     category: "Aksesoris",
-    image: "https://placehold.co/600x400?text=G502+X"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhcLMrOGEZ_XR7A1-t4mH4cumzkYqvkNsrBsuEVS4rSQ&s=10"
   },
   {
     id: 17,
     name: "Razer DeathAdder V3",
-    description: "Mouse esports ringan.",
+    description: "Victory takes on a new shape with the Razer DeathAdder V3 - an ergonomic esports gaming mouse with a true 8000 Hz polling rate for the fastest response.",
     price: 1199000,
     category: "Aksesoris",
-    image: "https://placehold.co/600x400?text=DeathAdder"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTem2Zna4WlwOT0w82bUstfkuoQYHcNvBHutx7-yAe1tA&s=10"
   },
   {
     id: 18,
     name: "SteelSeries Apex Pro",
-    description: "Mechanical Keyboard.",
+    description: "Steelseries Apex Pro TKL Wireless Gen 3 Rapid Tap SOCD - OmniPoint 3.0 Switch Gaming Keyboard.",
     price: 2899000,
     category: "Aksesoris",
-    image: "https://placehold.co/600x400?text=Apex+Pro",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQundjiExKuIDNKhR51bXuTqZmBD4k-kAAnxxzRi7B_jA&s=10",
     keywords: ["keyboard", "mechanical", "gaming", "rgb", "steelseries"]
   },
   {
     id: 19,
     name: "HyperX Cloud III",
-    description: "Gaming Headset.",
+    description: "Discover the HyperX Cloud III wired/wireless gaming headset and learn more about legendary comfort, high quality audio, and more. A legend reborn. Shop now!",
     price: 1599000,
     category: "Aksesoris",
-    image: "https://placehold.co/600x400?text=Cloud+III"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkhqCu_LUPvzDJjqWPihve2YWBstw9Zxuua0P_hcsTjA&s=10"
   },
   {
     id: 20,
     name: "Xbox Wireless Controller",
-    description: "Controller resmi Xbox.",
+    description: "Connect to XBOX consoles with XBOX Wireless. Stay on target with textured grip and a hybrid D-pad.",
     price: 999000,
     category: "Aksesoris",
-    image: "https://placehold.co/600x400?text=Xbox+Controller"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9UPp1nwj6ZnfAGmCwaForRQC10JpYSu-EnYE8_0UQAA&s=10"
   }
 ];
 
