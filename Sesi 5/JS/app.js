@@ -207,7 +207,7 @@ cart = cart.map(item => ({
     ...item,
     selected: item.selected ?? true
 }));
-saveCart;
+saveCart();
 updateCartBadge();
 
 function saveCart() {
