@@ -1,4 +1,5 @@
 const cartItems = document.getElementById("cart-items");
+console.log("cart.js TERLOAD");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 updateCartBadge();
@@ -38,6 +39,23 @@ function renderCart() {
         document.getElementById("grand-total").textContent = "Rp0";
         return;
     }
+
+    
+//Event Listener Checkbox
+console.log(document.querySelectorAll(".item-check"));
+
+document.querySelectorAll(".item-check").forEach(checkbox => {
+    console.log("Listener dipasang");
+
+    checkbox.addEventListener("change", function () {
+        console.log("Checkbox berubah");
+
+        const id = Number(this.dataset.id);
+        toggleSelect(id);
+    });
+});
+console.log("Jumlah checkbox:", document.querySelectorAll(".item-check").length);
+
 
     cart.forEach(item => {
         total += item.price * item.qty;
@@ -122,38 +140,22 @@ function renderCart() {
 renderCart();
 
 //Fungsi toggleSelect()
-function toggleSelect(id) {
-
+function toggleSelect(id, checked) {
     const item = cart.find(item => item.id === id);
 
     if (!item) return;
-
-    item.selected = !item.selected;
+    item.selected = checked;
 
     saveCart();
-
     renderCart();
-
 }
+
 
 // =========================
 // Ubah Jumlah Barang
 // =========================
-function changeQty(id, qty) {
-    qty = parseInt(qty);
-
-    const item = cart.find(item => item.id === id);
-
-    if (item) {
-        item.qty = qty;
-        saveCart();
-        updateCartBadge();
-        renderCart();
-    }
-}
 
 function changeQty(id, change) {
-
     const item = cart.find(item => item.id === id);
 
     if (!item) return;
@@ -189,9 +191,10 @@ function removeItem(id){
 }
 
 function clearCart() {
-    if (cart.length === 0)
+    if (cart.length === 0) {
         alert("Keranjang sudah kosong.");
     return;
+    }
 
     const confirmClear = confirm(
         "Yakin ingin mengosongkan seluruh keranjang?"
@@ -207,7 +210,6 @@ function clearCart() {
     renderCart();
 }
 
-
 // =========================
 // Fungsi Update Cart
 // =========================
@@ -215,7 +217,6 @@ function updateCartBadge() {
     const badge = document.getElementById("cart-count");
 
     if (!badge) return;
-
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -227,19 +228,6 @@ function updateCartBadge() {
 
 document.addEventListener("DOMContentLoaded", () => {
     updateCartBadge();
-});
-
-//Event Listener Checkbox
-document.querySelectorAll(".item-check").forEach(checkbox => {
-
-    checkbox.addEventListener("change", function () {
-
-        const id = Number(this.dataset.id);
-
-        toggleSelect(id);
-
-    });
-
 });
 
 // =========================
