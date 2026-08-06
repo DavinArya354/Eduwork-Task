@@ -1,165 +1,164 @@
+// ===============================
+// ELEMENT
+// ===============================
 const cartItems = document.getElementById("cart-items");
-console.log("cart.js TERLOAD");
+const grandTotal = document.getElementById("grand-total");
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-updateCartBadge();
+// ===============================
+// DATA
+// ===============================
+let cart = loadCart();
 
-// =========================
-// Format Rupiah
-// =========================
-function formatRupiah(number) {
-    return new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR"
-    }).format(number);
-}
-
-// =========================
-// Simpan Keranjang
-// =========================
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// =========================
-// Render Keranjang
-// =========================
-function renderCart() {
-    cartItems.innerHTML = "";
-
-    let total = 0;
-
-    if (cart.length === 0) {
-        cartItems.innerHTML = `
-            <div class="alert alert-warning">
-                Keranjang masih kosong.
-            </div>
-        `;
-
-        document.getElementById("grand-total").textContent = "Rp0";
-        return;
-    }
-
-    
-//Event Listener Checkbox
-console.log(document.querySelectorAll(".item-check"));
-
-document.querySelectorAll(".item-check").forEach(checkbox => {
-    console.log("Listener dipasang");
-
-    checkbox.addEventListener("change", function () {
-        console.log("Checkbox berubah");
-
-        const id = Number(this.dataset.id);
-        toggleSelect(id);
-    });
-});
-console.log("Jumlah checkbox:", document.querySelectorAll(".item-check").length);
-
-
-    cart.forEach(item => {
-        total += item.price * item.qty;
-
-        cartItems.innerHTML += `
-            <div class="card mb-3">
-                <div class="card-body">
-
-                    <div class="row align-items-center">
-
-                        <input type="checkbox"
-                            class="form-check-input me-3 item-check"
-                            data-id="${item.id}"
-                            ${item.selected ? "checked" : ""}>
-
-                        <!-- Gambar Produk -->
-                        <div class="col-md-2">
-                            <img
-                                src="${item.image}"
-                                class="img-fluid"
-                                alt="${item.name}"
-                            >
-                        </div>
-
-                        <!-- Informasi Produk -->
-                        <div class="col-md-2">
-                            <h5>${item.name}</h5>
-                            <p>${item.category}</p>
-                        </div>
-
-                        <!-- Harga -->
-                        <div class="col-md-2">
-                            ${formatRupiah(item.price)}
-                        </div>
-
-                        <!-- Jumlah -->
-                        <div class="col-md-2">
-                            <td>
-                                <div class="d-flex align-items-center justify-content-center gap-2">
-                                    <button
-                                        class="btn btn-outline-secondary btn-sm"
-                                        onclick="changeQty(${item.id}, -1)">
-                                        <i class="bi bi-dash"></i>
-                                    </button>
-
-                                    <span class="mx-2 fw-bold">
-                                        ${item.qty}
-                                    </span>
-
-                                    <button
-                                        class="btn btn-outline-primary btn-sm"
-                                        onclick="changeQty(${item.id}, 1)">
-                                        <i class="bi bi-plus"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </div>
-
-                        <!-- Tombol Hapus -->
-                        <div class="col-md-2 text-end">
-                            <button
-                                class="btn"
-                                onclick="removeItem(${item.id})"
-                            >
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        `;
-    });
-
-    document.getElementById("grand-total").textContent = formatRupiah(total);
-}
-
-// =========================
-// Jalankan Pertama Kali
-// =========================
-renderCart();
-
-//Fungsi toggleSelect()
-function toggleSelect(id, checked) {
-    const item = cart.find(item => item.id === id);
-
-    if (!item) return;
-    item.selected = checked;
-
-    saveCart();
+// ===============================
+// REFRESH CART
+// ===============================
+function refreshCart() {
+    saveCart(cart);
+    updateCartBadge(cart);
     renderCart();
 }
 
+// ===============================
+// RENDER CART
+// ===============================
+function renderCart() {
+    // Selalu ambil data terbaru dari localStorage
+    cart = loadCart();
+
+    // Kosongkan isi keranjang sebelum dirender ulang
+    cartItems.innerHTML = "";
+
+    // Reset total belanja
+    let total = 0;
+
+    // ===========================
+    // CART KOSONG
+    // ===========================
+    if (cart.length === 0) {
+        cartItems.innerHTML = `
+            <tr>
+                <td colspan="6" class="text-center py-5">
+
+                    <i class="bi bi-cart-x display-1 text-secondary"></i>
+
+                    <h4 class="mt-3">
+                        Keranjang Masih Kosong
+                    </h4>
+
+                    <p class="text-muted">
+                        Yuk tambahkan produk terlebih dahulu.
+                    </p>
+
+                </td>
+            </tr>
+        `;
+
+        grandTotal.textContent = formatRupiah(0);
+        return;
+    }
+
+    // ===========================
+    // MEMBUAT HTML
+    // ===========================
+    let html = "";
+
+    cart.forEach(item => {
+
+        const subtotal = item.price * item.qty;
+
+        total += subtotal;
+
+        html += `
+            <tr>
+                <td>
+                    <input
+                        type="checkbox"
+                        class="item-check"
+                        data-id="${item.id}"
+                        ${item.selected ? "checked" : ""}>
+                </td>
+
+                <td>
+                    <img
+                        src="${item.image}"
+                        alt="${item.name}"
+                        width="80"
+                        class="img-fluid rounded">
+                </td>
+
+                <td>
+                    <h6 class="mb-1">
+                        ${item.name}
+                    </h6>
+
+                    <small class="text-muted">
+                        ${item.category}
+                    </small>
+                </td>
+
+                <td>
+                    ${formatRupiah(item.price)}
+                </td>
+
+                <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <button
+                            class="btn btn-outline-secondary btn-minus"
+                            data-id="${item.id}">
+
+                            <i class="bi bi-dash"></i>
+                        </button>
+
+                        <span>
+                            ${item.qty}
+                        </span>
+
+                        <button
+                            class="btn btn-outline-secondary btn-plus"
+                            data-id="${item.id}">
+
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+                </td>
+
+                <td>
+                    ${formatRupiah(subtotal)}
+                </td>
+
+                <td>
+                    <button
+                        class="btn btn-outline-danger btn-delete"
+                        data-id="${item.id}">
+
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+
+            </tr>
+        `;
+    });
+
+    // Tampilkan semua HTML sekaligus
+    cartItems.innerHTML = html;
+
+    // Update total
+    const selectedItems = cart.filter(item => item.selected);
+
+    const total = selectedItems.reduce((sum, item) => {
+        return sum + (item.price * item.qty);
+    }, 0);
+
+    grandTotal.textContent = formatRupiah(total);
+}
 
 // =========================
 // Ubah Jumlah Barang
 // =========================
-
 function changeQty(id, change) {
     const item = cart.find(item => item.id === id);
 
     if (!item) return;
-
     item.qty += change;
 
     if (item.qty <= 0) {
@@ -167,72 +166,88 @@ function changeQty(id, change) {
         return;
     }
 
-    saveCart();
-    updateCartBadge();
-    renderCart();
+    refreshCart();
 }
 
 // =========================
 // Hapus Barang
 // =========================
-function removeItem(id){
-    const confirmDelete = confirm(
-        "Yakin ingin menghapus produk ini?"
-    );
-
-    if(!confirmDelete){
-        return;
-    }
-
-    cart = cart.filter (item => item.id !== id)
-    saveCart();
-    updateCartBadge();
-    renderCart();
+function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    refreshCart();
 }
 
+// =========================
+// Ubah Jumlah Barang
+// =========================
+function toggleSelect(id, checked) {
+    const item = cart.find(item => item.id === id);
+
+    if (!item) return;
+    item.selected = checked;
+
+    refreshCart();
+}
+
+// =========================
+// Clear Barang
+// =========================
 function clearCart() {
-    if (cart.length === 0) {
-        alert("Keranjang sudah kosong.");
-    return;
-    }
-
-    const confirmClear = confirm(
-        "Yakin ingin mengosongkan seluruh keranjang?"
-    );
-
-    if(!confirmClear){
+    if (!confirm("Kosongkan seluruh keranjang?")) {
         return;
     }
-
-    cart =[];
-    saveCart();
-    updateCartBadge();
-    renderCart();
+    cart = [];
+    refreshCart();
 }
 
 // =========================
-// Fungsi Update Cart
+// Update Summary
 // =========================
-function updateCartBadge() {
-    const badge = document.getElementById("cart-count");
+function updateSummary() {
+    const selectedItems = cart.filter(item => item.selected);
 
-    if (!badge) return;
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const total = selectedItems.reduce((sum, item) => {
+        return sum + (item.price * item.qty);
+    }, 0);
 
-    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    grandTotal.textContent = formatRupiah(total);
 
-    badge.textContent = totalQty;
-
-    badge.style.display = totalQty > 0 ? "flex" : "none";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    updateCartBadge();
+// ===============================
+// EVENT DELEGATION
+// ===============================
+cartItems.addEventListener("click", function (e) {
+    const button = e.target.closest("button");
+
+    if (!button) return;
+    const id = Number(button.dataset.id);
+
+    if (button.classList.contains("btn-plus")) {
+        changeQty(id, 1);
+    }
+
+    else if (button.classList.contains("btn-minus")) {
+        changeQty(id, -1);
+    }
+
+    else if (button.classList.contains("btn-delete")) {
+        if (confirm("Yakin ingin menghapus produk ini?")) {
+            removeItem(id);
+        }
+    }
+
+});
+
+cartItems.addEventListener("change", function (e) {
+    if (!e.target.classList.contains("item-check")) return;
+
+    const id = Number(e.target.dataset.id);
+    toggleSelect(id, e.target.checked);
 });
 
 // =========================
-// Realtime Update Cart
+// INIT
 // =========================
-window.addEventListener("storage", () => {
-    updateCartBadge();
-});
+updateCartBadge(cart);
+renderCart();
