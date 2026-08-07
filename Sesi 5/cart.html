@@ -24,26 +24,52 @@
                 Kosongkan Keranjang
             </button>
             </span>
-            <div id="cart-items"></div>
+            <div id="cart-items"></div> <!--Cart Items-->
         </div>
 
         <!-- ================= Ringkasan Belanja ================= -->
-        <div class="card col-lg-3">
-            <div class="card-body">
-                <h5>Ringkasan Belanja</h5>
-                <p>Total Barang</p>
-                <p>Total Qty</p>
-                <p>Subtotal</p>
-                <hr>
-                <h4>Total</h4>
-                <h3 id="grand-total">Rp0</h3>
-                <a href="checkout.html" class="btn btn-warning">
-                Checkout
-                </a>
+        <div class="container my-4">
+
+        <div class="row">
+            <!-- Daftar Produk -->
+            <div class="col-lg-8">
+                <div id="cart-items" class="cart-list"></div>
+            </div>
+
+            <!-- Ringkasan -->
+            <div class="col-lg-4">
+                <div class="summary-card">
+                    <h4>Ringkasan Belanja</h4>
+
+                    <div class="summary-row">
+                        <span>Produk Dipilih</span>
+                        <span id="selected-count">0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Total Item</span>
+                        <span id="selected-qty">0</span>
+                    </div>
+                    <hr>
+
+                    <div class="summary-row">
+                        <strong>Total</strong>
+                        <strong id="grand-total">
+                            Rp0
+                        </strong>
+                    </div>
+
+                    <button
+                        class="btn btn-success w-100 mt-3"
+                        id="checkout-btn">
+                        Checkout
+                    </button>
+                </div>
             </div>
         </div>
+
     </div>
+    <script src="JS/utils.js"></script>
     <script src="JS/cart.js"></script>
-    <script src="JS/cart-utils.js"></script>
 </body>
 </html>
