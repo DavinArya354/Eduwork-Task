@@ -94,16 +94,16 @@ body {
     background-color: #8f4df8;
 }
 
-.summary-card .badge {
-    background:#3620ff;
-    color:white;
-}
 
 /* ================= BUTTON ================= */
 .qty-box {
     border: 1px solid gray;
     border-radius: 15px;
     width: 120px;
+}
+
+.btn {
+    border: none
 }
 
 .btn:hover {
@@ -126,7 +126,7 @@ footer {
 }
 
 /* =======================================================
-   CART ITEM (Refactor v2)
+   CART PAGE (Refactor v2)
 ======================================================= */
 .cart-container{
     display: flex;
@@ -268,15 +268,16 @@ footer {
 .cart-summary {
     width: 100%;
     min-width: 0;
+    top: 90px;
+    position: sticky;
 }
 
-.cart-summary .summary-card {
+.summary-card {
+    width: 100%;
     background:#fff;
     border:1px solid #ddd;
     border-radius:12px;
     padding:20px;
-    position:fixed;
-    top:90px;
     box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
@@ -333,6 +334,6 @@ footer {
     }
 
     .cart-summary .summary-card {
-        position: static;
+        position: sticky;
     }
 }
