@@ -73,7 +73,8 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `profile_image` varchar(255) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -162,8 +163,9 @@ COMMIT;
 -- Insert/Create
 --
 
-INSERT INTO users (name, email, password)
+INSERT INTO users (id, name, email, password)
 VALUES (
+  '1',
   'Davin',
   'davin@example.com',
   'hashed_password'
@@ -216,18 +218,15 @@ SELECT * FROM users;
 SELECT * FROM products;
 
 /* Produk tertentu */
-SELECT *
-FROM products
+SELECT * FROM products
 WHERE id = 1;
 
 /* Berdasarkan Kategori */
-SELECT *
-FROM products
+SELECT * FROM products
 WHERE category = 'Aksesoris';
 
 /* Berdasarkan Pencarian Nama */
-SELECT *
-FROM products
+SELECT * FROM products
 WHERE name LIKE '%keyboard%';
 
 /* Order dan User*/
@@ -240,7 +239,6 @@ JOIN users
     ON orders.user_id = users.id;
 
 /* Detail Order */
-
 SELECT
     orders.id AS order_id,
     users.name AS customer,
