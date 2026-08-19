@@ -14,6 +14,10 @@ body {
     background: #3620ff;
 }
 
+.navbar-brand {
+    font-size: calc(1.3rem + 0.6vw) !important;
+}
+
 .nav-item {
     padding-top: 5px;
 }
@@ -40,7 +44,6 @@ body {
     position: absolute;
     margin-top: 8px;
     margin-right: 10px;
-
     min-width: 15px;
     height: 15px;
     border-radius: 100%;
@@ -48,15 +51,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: #db091e;
+    background: #e91026;
     color: white;
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-
     padding: 2px;
 }
+
 
 /* ================= HERO ================= */
 .hero {
@@ -67,6 +69,14 @@ body {
 
 .hero-img {
     max-height:350px;
+}
+
+.btn-warning {
+    background-color: #a3ff2b;
+}
+
+.btn-warning:hover {
+    background-color: #8fee14;
 }
 
 /* ================= CARD ================= */
@@ -90,8 +100,20 @@ body {
     color:white;
 }
 
-.card-header .badge {
-    background-color: #8f4df8;
+.product-category {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    color: #3620ff;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #3620ff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: auto;
 }
 
 
@@ -123,6 +145,30 @@ body {
 /* ================= FOOTER ================= */
 footer {
     background:#3620ff;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media(max-width:420px) {
+
+}
+
+@media(max-width:560px) {
+    .navbar-brand {
+        font-size: 1.20rem !important;
+    }
+
+    .container p{
+        color: #8fee14;
+        font-size: small;
+    }
+}
+
+@media(max-width:768px) {
+    .navbar-brand {
+        font-size: calc(1.275rem + 0.3vw) !important;
+    }
 }
 
 /* =======================================================
@@ -239,7 +285,7 @@ footer {
 }
 
 .btn-danger {
-    color: #db091e;
+    color: #e91026;
     background-color: white;
     display: flex;
     flex-direction: row;
@@ -248,6 +294,16 @@ footer {
     font-size: 12px;
     text-align:center; 
     border-radius:8px;
+}
+
+.btn-danger:hover{
+    color: white;
+    background-color: #e91026;
+}
+
+.btn-delete:hover{
+    color: white;
+    background-color: #e91026;
 }
 
 .btn-danger i {
@@ -308,9 +364,71 @@ footer {
     color:#222;
 }
 
+/* ================= USER ================= */
+
+.user-nav-item{
+    margin-left: 15px;
+}
+
+.user-nav-link{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-profile-photo{
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+
+.nav-profile-photo:hover {
+    border: 1px #a3ff2b;
+    border-radius: 50px;
+    transition: all .3s ease-in-out;
+}
+
+
+/* ================= USER PAGE ================= */
+
+.user-card{
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+.profile-photo-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.profile-photo{
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid #3620ff;
+}
+
 /* ==========================
    RESPONSIVE
 ========================== */
+@media (max-width:560) {
+
+}
+
 @media(max-width:768px) {
     .cart-item{
         flex-wrap:wrap;
