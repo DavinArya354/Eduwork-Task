@@ -51,10 +51,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #cc4956;
+    background: #e91026;
     color: white;
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     padding: 2px;
 }
@@ -69,6 +69,14 @@ body {
 
 .hero-img {
     max-height:350px;
+}
+
+.btn-warning {
+    background-color: #a3ff2b;
+}
+
+.btn-warning:hover {
+    background-color: #8fee14;
 }
 
 /* ================= CARD ================= */
@@ -92,8 +100,20 @@ body {
     color:white;
 }
 
-.card-header .badge {
-    background-color: #8f4df8;
+.product-category {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    color: #3620ff;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #3620ff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: auto;
 }
 
 
