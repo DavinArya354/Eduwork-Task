@@ -35,7 +35,7 @@ function createProductCard(product) {
                     alt="${product.name}">
 
                 <div class="card-body d-flex flex-column">
-                    <span class="badge bg-primary mb-2">
+                    <span class="product-category">
                         ${product.category}
                     </span>
 
@@ -47,7 +47,7 @@ function createProductCard(product) {
                         ${product.description}
                     </p>
 
-                    <h4 class="text-primary fw-bold">
+                    <h4 class="product-price fw-bold">
                         ${formatRupiah(product.price)}
                     </h4>
 
@@ -208,13 +208,13 @@ cart = cart.map(item => ({
     selected: item.selected ?? true
 }));
 saveCart();
-updateCartBadge();
+updateCartBadge(cart);
 
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function updateCartBadge() {
+function updateCartBadge(cart) {
     const badge = document.getElementById("cart-count");
 
     const totalQty = cart.reduce((total, item) => {
@@ -239,9 +239,9 @@ function addToCart(productId) {
         });
     }
 
-    saveCart();
-    updateCartBadge();
+    saveCart(cart);
+    updateCartBadge(cart);
     alert(product.name + " berhasil ditambahkan.");
 }
 
-updateCartBadge();
+updateCartBadge(cart);
