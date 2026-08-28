@@ -102,105 +102,156 @@
                         </h2>
                     </div>
 
-                    <!-- REGISTER / LOGIN -->
+                    <!-- AUTH SECTION -->
                     <div id="auth-section">
-                        <h4 class="mb-3">
-                            Create Account
-                        </h4>
 
-                        <form id="register-form">
-                            <div class="mb-3">
-                                <label class="form-label">
-                                    Username
-                                </label>
+                        <!-- SIGN IN -->
+                        <div id="login-tab" class="auth-tab">
+                            <h2 class="auth-title">
+                                Sign In
+                            </h2>
 
-                                <input
-                                    type="text"
-                                    id="register-username"
-                                    class="form-control"
-                                    required>
+                            <p class="auth-subtitle">
+                                Welcome back! Please sign in to your account.
+                            </p>
+
+                            <form id="login-form">
+                                <div class="mb-3">
+                                    <label for="login-email" class="form-label">
+                                        Email
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="login-email"
+                                        class="form-control"
+                                        placeholder="Enter your email"
+                                        required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="login-password" class="form-label">
+                                        Password
+                                    </label>
+
+                                    <input
+                                        type="password"
+                                        id="login-password"
+                                        class="form-control"
+                                        placeholder="Enter your password"
+                                        required>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    class="signIn-btn">
+                                    Sign In
+                                </button>
+                            </form>
+
+                            <!-- SWITCH TO REGISTER -->
+                            <div class="auth-switch">
+                                <span>
+                                    Don't have an account?
+                                </span>
+
+                                <button
+                                    type="button"
+                                    id="show-register"
+                                    class="auth-switch-btn">
+                                    Create Account
+                                </button>
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">
-                                    Email
-                                </label>
 
-                                <input
-                                    type="email"
-                                    id="register-email"
-                                    class="form-control"
-                                    required>
-                            </div>
+                        <!-- CREATE ACCOUNT -->
+                        <div id="register-tab" class="auth-tab d-none">
 
-                            <div class="mb-3">
-                                <label class="form-label">
-                                    Password
-                                </label>
-
-                                <input
-                                    type="password"
-                                    id="register-password"
-                                    class="form-control"
-                                    required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">
-                                    Profile Photo
-                                </label>
-
-                                <input
-                                    type="file"
-                                    id="register-photo"
-                                    class="form-control"
-                                    accept="image/*">
-                            </div>
-
-                            <button
-                                type="submit"
-                                class="btn btn-warning w-100">
+                            <h2 class="auth-title">
                                 Create Account
-                            </button>
-                        </form>
+                            </h2>
 
-                        <hr class="my-4">
+                            <p class="auth-subtitle">
+                                Create your account to get started.
+                            </p>
 
-                        <h4 class="mb-3">
-                            Login
-                        </h4>
+                            <form id="register-form">
+                                <div class="mb-3">
+                                    <label for="register-username" class="form-label">
+                                        Username
+                                    </label>
 
-                        <form id="login-form">
-                            <div class="mb-3">
-                                <label class="form-label">
-                                    Email
-                                </label>
+                                    <input
+                                        type="text"
+                                        id="register-username"
+                                        class="form-control"
+                                        placeholder="Enter your username"
+                                        required>
+                                </div>
 
-                                <input
-                                    type="email"
-                                    id="login-email"
-                                    class="form-control"
-                                    required>
+                                <div class="mb-3">
+                                    <label for="register-email" class="form-label">
+                                        Email
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="register-email"
+                                        class="form-control"
+                                        placeholder="Enter your email"
+                                        required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="register-password" class="form-label">
+                                        Password
+                                    </label>
+
+                                    <input
+                                        type="password"
+                                        id="register-password"
+                                        class="form-control"
+                                        placeholder="Create a password"
+                                        required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="register-photo" class="form-label">
+                                        Profile Photo
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="register-photo"
+                                        class="form-control"
+                                        accept="image/*">
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    class="createAcc-btn">
+                                    Create Account
+                                </button>
+                            </form>
+
+
+                            <!-- SWITCH TO LOGIN -->
+                            <div class="auth-switch">
+                                <span>
+                                    Already have an account?
+                                </span>
+
+                                <button
+                                    type="button"
+                                    id="show-login"
+                                    class="auth-switch-btn">
+                                    Sign In
+                                </button>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">
-                                    Password
-                                </label>
+                        </div>
 
-                                <input
-                                    type="password"
-                                    id="login-password"
-                                    class="form-control"
-                                    required>
-                            </div>
-
-                            <button
-                                type="submit"
-                                class="btn btn-primary w-100">
-                                Login
-                            </button>
-                        </form>
                     </div>
 
 
