@@ -14,6 +14,12 @@ const navUsername = document.getElementById("nav-username");
 const logoutBtn = document.getElementById("logout-btn");
 const changePhoto = document.getElementById("change-photo");
 
+const loginTab = document.getElementById("login-tab");
+const registerTab = document.getElementById("register-tab");
+
+const showRegister = document.getElementById("show-register");
+const showLogin = document.getElementById("show-login");
+
 
 // ============================
 // DEFAULT PROFILE PHOTO
@@ -89,11 +95,9 @@ registerForm.addEventListener("submit", function (event) {
 
 
     if (photoInput.files.length > 0) {
-
         const reader = new FileReader();
 
         reader.onload = function () {
-
             createUser(
                 username,
                 email,
@@ -116,6 +120,15 @@ registerForm.addEventListener("submit", function (event) {
 
     }
 
+});
+
+// ============================
+// SWITCH TO LOGIN
+// ============================
+
+showRegister.addEventListener("click", function () {
+    loginTab.classList.add("d-none");
+    registerTab.classList.remove("d-none");
 });
 
 
@@ -142,7 +155,6 @@ function createUser(username, email, password, photo) {
 
     updateUserUI();
 }
-
 
 // ============================
 // LOGIN
@@ -179,6 +191,17 @@ loginForm.addEventListener("submit", function (event) {
     } else {
         alert("Email atau password salah.");
     }
+
+});
+
+// ============================
+// SWITCH TO REGISTER
+// ============================
+
+showLogin.addEventListener("click", function () {
+
+    registerTab.classList.add("d-none");
+    loginTab.classList.remove("d-none");
 
 });
 
