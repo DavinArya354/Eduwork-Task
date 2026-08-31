@@ -159,7 +159,7 @@ footer {
         font-size: 1.20rem !important;
     }
 
-    .container p{
+    .container p {
         color: #8fee14;
         font-size: small;
     }
@@ -174,7 +174,7 @@ footer {
 /* =======================================================
    CART PAGE (Refactor v2)
 ======================================================= */
-.cart-container{
+.cart-container {
     display: flex;
     flex-direction: row;
 }
@@ -379,9 +379,7 @@ footer {
 .nav-profile-photo{
     width: 30px;
     height: 30px;
-
     border-radius: 50%;
-
     object-fit: cover;
     border: 2px solid white;
 }
@@ -398,11 +396,8 @@ footer {
 
 .user-card{
     background: white;
-
     padding: 30px;
-
     border-radius: 15px;
-
     box-shadow: 0 10px 30px rgba(0,0,0,.1);
 }
 
@@ -414,12 +409,63 @@ footer {
 .profile-photo{
     width: 150px;
     height: 150px;
-
     border-radius: 50%;
-
     object-fit: cover;
-
     border: 5px solid #3620ff;
+}
+
+/* ================= AUTH ================= */
+
+.signIn-btn {
+    height: 35px;
+    width: 100%;
+    background-color: #a3ff2b;
+    border: solid 1px #a3ff2b;
+    border-radius: 8px;
+    color: #222;
+}
+
+.createAcc-btn {
+    height: 35px;
+    width: 100%;
+    background-color: #a3ff2b;
+    border: solid 1px #a3ff2b;
+    border-radius: 8px;
+    color: #222;
+}
+
+.auth-title {
+    text-align: center;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.auth-subtitle{
+    text-align : center;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #777;
+}
+
+.auth-switch-btn {
+    border: none;
+    background: none;
+    padding: 0;
+    margin-left: 5px;
+    color: #3620ff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-switch-btn:hover {
+    text-decoration: underline;
 }
 
 /* ==========================
