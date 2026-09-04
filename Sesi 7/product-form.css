@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f5f7fb;
+    font-family: "Outfit", sans-serif;
+}
+
+
+/* ================= PRODUCT FORM ================= */
+.product-form-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+/* ================= HEADER ================= */
+.product-form-card .card-header {
+    background: #3620ff;
+    color: white;
+    padding: 20px;
+}
+
+.product-form-card .card-header h3 {
+    font-weight: 600;
+}
+
+
+/* ================= FORM ================= */
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #3620ff;
+    box-shadow: 0 0 0 0.2rem rgba(54, 32, 255, 0.15);
+}
+
+
+/* ================= BUTTON ================= */
+
+.btn {
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #3620ff;
+    border-color: #3620ff;
+}
+
+.btn-primary:hover {
+    background-color: #2a18d6;
+    border-color: #2a18d6;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .product-form-card .card-body {
+        padding: 20px !important;
+    }
+}
