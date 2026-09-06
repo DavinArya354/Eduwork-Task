@@ -1,7 +1,6 @@
 <?php
 
-require_once "config/database.php";
-
+require_once __DIR__ . "/../config/database.php";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $name = $_POST["name"];
@@ -29,6 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ":category" => $category
     ]);
 
-    header("Location: product-read.php");
+    header("Location: /Eduwork/Sesi 8/crud/product-read.php");
     exit;
 }
