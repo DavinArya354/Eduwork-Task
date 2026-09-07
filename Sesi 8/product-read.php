@@ -1,11 +1,9 @@
 <?php
 
-require_once "config/database.php";
+require_once __DIR__ . "/../config/database.php";
 
 $sql = "SELECT * FROM products ORDER BY id DESC";
-
 $stmt = $pdo->query($sql);
-
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -19,7 +17,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-
     <h1>Products</h1>
 
     <a href="product-form.php">
@@ -29,7 +26,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <br><br>
 
     <table border="1">
-
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -42,7 +38,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </tr>
 
         <?php foreach ($products as $product): ?>
-
             <tr>
                 <td>
                     <?= htmlspecialchars($product["id"]) ?>
@@ -85,10 +80,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </a>
                 </td>
             </tr>
-
         <?php endforeach; ?>
-
     </table>
-
 </body>
 </html>
