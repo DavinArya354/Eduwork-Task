@@ -1,86 +1,152 @@
 <?php
 
-require_once __DIR__ . "/../config/database.php";
+$pageTitle = "New Releases";
 
-$sql = "SELECT * FROM products ORDER BY id DESC";
+require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "/../components/header.php";
+
+
+// Ambil 8 produk terbaru
+$sql = "
+    SELECT *
+    FROM products
+    ORDER BY id DESC
+    LIMIT 8
+";
+
 $stmt = $pdo->query($sql);
+
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- ================= NEW RELEASES ================= -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
-    <h1>Products</h1>
+<section class="py-5">
+<div class="container">
+    <!-- Section Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">
+                New Releases
+            </h1>
 
-    <a href="product-form.php">
-        Add Product
-    </a>
+            <p class="text-muted mb-0">
+                Check out our latest products.
+            </p>
+        </div>
 
-    <br><br>
+        <a href="products.php"
+           class="btn btn-outline-primary">
 
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Category</th>
-            <th>Action</th>
-        </tr>
+            View All
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 
-        <?php foreach ($products as $product): ?>
-            <tr>
-                <td>
-                    <?= htmlspecialchars($product["id"]) ?>
-                </td>
 
-                <td>
-                    <?= htmlspecialchars($product["name"]) ?>
-                </td>
+    <!-- Product List -->
+    <div class="row g-4">
+        <?php if (empty($products)): ?>
 
-                <td>
-                    <?= htmlspecialchars($product["description"]) ?>
-                </td>
+            <div class="col-12">
+                <div class="empty-product text-center py-5">
+                    <i class="bi bi-box-seam display-4"></i>
 
-                <td>
-                    <?= htmlspecialchars($product["image"]) ?>
-                </td>
+                    <h4 class="mt-3">
+                        No products available
+                    </h4>
 
-                <td>
-                    <?= htmlspecialchars($product["price"]) ?>
-                </td>
+                    <p class="text-muted">
+                        There are currently no products.
+                    </p>
+                </div>
+            </div>
 
-                <td>
-                    <?= htmlspecialchars($product["stock"]) ?>
-                </td>
+        <?php else: ?>
 
-                <td>
-                    <?= htmlspecialchars($product["category"]) ?>
-                </td>
+            <?php foreach ($products as $product): ?>
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
 
-                <td>
-                    <a href="product-update.php?id=<?= $product["id"] ?>">
-                        Edit
-                    </a>
+                    <div class="card product-card h-100">
+                        <!-- Product Image -->
 
-                    |
+                        <div class="product-image-wrapper">
+                            <?php if (!empty($product["image"])): ?>
 
-                    <a href="product-delete.php?id=<?= $product["id"] ?>"
-                       onclick="return confirm('Delete this product?')">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-</body>
-</html>
+                                <img
+                                    src="../<?= htmlspecialchars($product["image"]) ?>"
+                                    class="card-img-top product-image"
+                                    alt="<?= htmlspecialchars($product["name"]) ?>">
+
+                            <?php else: ?>
+                                <div class="product-no-image">
+
+                                    <i class="bi bi-image"></i>
+
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <!-- Product Body -->
+                        <div class="card-body d-flex flex-column">
+                            <!-- Category -->
+                            <span class="badge product-category align-self-start mb-2">
+                                <?= htmlspecialchars($product["category"]) ?>
+                            </span>
+
+                            <!-- Name -->
+                            <h5 class="card-title fw-bold">
+                                <?= htmlspecialchars($product["name"]) ?>
+                            </h5>
+
+                            <!-- Description -->
+                            <p class="card-text text-muted small">
+                                <?= htmlspecialchars($product["description"]) ?>
+                            </p>
+
+                            <!-- Price -->
+                            <h5 class="product-price mt-auto">
+                                Rp <?= number_format(
+                                    $product["price"],
+                                    0,
+                                    ",",
+                                    "."
+                                ) ?>
+                            </h5>
+
+                            <!-- Stock -->
+                            <p class="small text-muted">
+                                <i class="bi bi-box"></i>
+                                Stock:
+                                <?= htmlspecialchars($product["stock"]) ?>
+                            </p>
+
+                            <!-- Action -->
+                            <a
+                                href="product-detail.php?id=<?= $product["id"] ?>"
+                                class="btn btn-primary w-100">
+                                View Product
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+    </div>
+</div>
+</section>
+
+<?php
+
+require_once __DIR__ . "/../components/footer.php";
+
+?>
