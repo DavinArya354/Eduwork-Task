@@ -1,0 +1,254 @@
+/* =====================================================
+GLOBAL THEME
+===================================================== */
+
+:root {
+
+/* Main Colors */
+--primary-color: #3620ff;
+--primary-hover: #2814d9;
+
+/* Accent */
+--accent-color: #a3ff2b;
+--accent-hover: #8fee14;
+
+--btn-outline-primary: #a3ff2b;
+--btn-outline-hover: #8fee14;
+
+/* Danger */
+--danger-color: #db091e;
+
+/* Text */
+--text-color: #212529;
+--muted-color: #6c757d;
+
+/* Background */
+--body-bg: #f5f7fb;
+--card-bg: #ffffff;
+
+/* Footer */
+--footer-bg: #3620ff;
+
+}
+
+/* =====================================================
+GLOBAL
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+  background: var(--body-bg);
+  color: var(--text-color);
+  font-family: "Outfit", sans-serif;
+}
+
+/* =====================================================
+NAVBAR
+===================================================== */
+
+.custom-navbar {
+  background: var(--primary-color);
+}
+
+.navbar-brand {
+  font-size: calc(1.3rem + 0.6vw) !important;
+}
+
+.nav-item {
+  padding-top: 5px;
+}
+
+.nav-link {
+  font-weight: 500;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--accent-color) !important;
+}
+
+/* =====================================================
+CART
+===================================================== */
+
+.cart-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.cart-badge {
+    position: absolute;
+    margin-top: 8px;
+    margin-right: 10px;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e91026;
+    color: white;
+
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px;
+}
+
+/* =====================================================
+PRODUCT CARD
+===================================================== */
+
+.product-card {
+  border: none;
+
+  background: var(--card-bg);
+  border-radius: 12px;
+
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =====================================================
+PRODUCT IMAGE
+===================================================== */
+
+.product-image-wrapper {
+  width: 100%;
+  height: 220px;
+
+  background: #eeeeee;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #adb5bd;
+  font-size: 3rem;
+}
+
+/* =====================================================
+PRODUCT CATEGORY
+===================================================== */
+
+.product-category {
+  background: var(--accent-color);
+  color: black;
+  font-weight: 500;
+}
+
+/* =====================================================
+PRODUCT PRICE
+===================================================== */
+
+.product-price {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* =====================================================
+BUTTON
+===================================================== */
+
+.btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.btn-outline-primary {
+  background: white;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--btn-outline-hover);
+  border-color: var(--btn-outline-hover);
+  color: white;
+}
+
+.btn-warning {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.btn-warning:hover {
+  background: var(--accent-hover); 
+  border-color: var(--accent-hover);
+}
+
+/* =====================================================
+EMPTY PRODUCT
+===================================================== */
+
+.empty-product {
+  background: white;
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+  color: #adb5bd;
+}
+
+.empty-product h4 {
+  color: var(--text-color);
+}
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.custom-footer {
+  background: var(--footer-bg);
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: 0.3s;
+}
+
+.footer-link:hover {
+  color: var(--accent-color);
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media (max-width: 991px) {
+.footer-link {
+    margin-left: 0;
+
+    margin-right: 15px;
+}
+}
