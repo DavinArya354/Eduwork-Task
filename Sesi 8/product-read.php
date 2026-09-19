@@ -18,6 +18,8 @@ $stmt = $pdo->query($sql);
 
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
+
 ?>
 
 <!-- ================= NEW RELEASES ================= -->
@@ -79,7 +81,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php if (!empty($product["image"])): ?>
 
                                 <img
-                                    src="../<?= htmlspecialchars($product["image"]) ?>"
+                                    src="/Eduwork/Sesi%207/<?= htmlspecialchars($product["image"]) ?>"
                                     class="card-img-top product-image"
                                     alt="<?= htmlspecialchars($product["name"]) ?>">
 
@@ -132,6 +134,24 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 class="btn btn-primary w-100">
                                 View Product
                             </a>
+                            <div class="update-delete d-flex gap-2">
+                                <!-- UPDATE -->
+                                <a
+                                    href="product-edit.php?id=<?= $product["id"] ?>"
+                                    class="btn btn-outline-primary flex-fill">
+                                    <i class="bi bi-pencil"></i>
+                                    Update
+                                </a>
+
+                                <!-- DELETE -->
+                                <a
+                                    href="product-delete.php?id=<?= $product["id"] ?>"
+                                    class="btn btn-outline-danger flex-fill"
+                                    onclick="return confirm('Are you sure you want to delete this product?');">
+                                    <i class="bi bi-trash"></i>
+                                    Delete
+                                </a>
+                            </div>
                         </div>
 
                     </div>
