@@ -1,0 +1,456 @@
+/* =====================================================
+GLOBAL THEME
+===================================================== */
+
+:root {
+
+/* Main Colors */
+--primary-color: #3620ff;
+--primary-hover: #2814d9;
+
+/* Accent */
+--accent-color: #a3ff2b;
+--accent-hover: #8fee14;
+
+--btn-outline-primary: #3620ff;
+--btn-outline-hover: #2814d9;
+
+/* Danger */
+--danger-color: #db091e;
+
+/* Text */
+--text-color: #212529;
+--muted-color: #6c757d;
+
+/* Background */
+--body-bg: #f5f7fb;
+--card-bg: #ffffff;
+
+/* Footer */
+--footer-bg: #3620ff;
+
+}
+
+/* =====================================================
+GLOBAL
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+  background: var(--body-bg);
+  color: var(--text-color);
+  font-family: "Outfit", sans-serif;
+}
+
+/* =====================================================
+NAVBAR
+===================================================== */
+
+.custom-navbar {
+  background: var(--primary-color);
+}
+
+.navbar-brand {
+  font-size: calc(1.3rem + 0.6vw) !important;
+}
+
+.nav-item {
+  padding-top: 5px;
+}
+
+.nav-link {
+  font-weight: 500;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--accent-color) !important;
+}
+
+/* =====================================================
+CART
+===================================================== */
+
+.cart-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.cart-badge {
+    position: absolute;
+    margin-top: 8px;
+    margin-right: 10px;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e91026;
+    color: white;
+
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px;
+}
+
+/* =====================================================
+PRODUCT CARD
+===================================================== */
+
+.product-card {
+  border: none;
+
+  background: var(--card-bg);
+  border-radius: 12px;
+
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =====================================================
+PRODUCT TABLE
+===================================================== */
+
+.product-table-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+/* TABLE */
+
+.product-table {
+    margin-bottom: 0 !important;
+}
+
+
+/* TABLE HEADER */
+
+.product-table thead th {
+    background: var(--primary-color);
+    color: white;
+
+    font-weight: 600;
+    white-space: nowrap;
+
+    border: none;
+    padding: 14px 16px;
+}
+
+
+/* TABLE BODY */
+
+.product-table tbody td {
+    padding: 14px 16px;
+
+    vertical-align: middle;
+}
+
+
+/* TABLE HOVER */
+
+.product-table tbody tr:hover {
+    background-color: #f8f9ff;
+}
+
+
+/* PRODUCT IMAGE */
+
+.product-table-image {
+    width: 60px;
+    height: 60px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    background: #eeeeee;
+}
+
+
+/* NO IMAGE */
+
+.product-table-no-image {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eeeeee;
+
+    border-radius: 8px;
+
+    color: #adb5bd;
+
+    font-size: 1.5rem;
+}
+
+
+/* DESCRIPTION */
+
+.product-description {
+    max-width: 300px;
+
+    color: var(--muted-color);
+
+    font-size: 0.9rem;
+}
+
+
+/* PRICE */
+
+.product-table-price {
+    color: var(--primary-color);
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* CATEGORY */
+
+.product-table .product-category {
+    background: var(--accent-color);
+
+    color: black;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* ACTION */
+
+.product-table td:last-child {
+    white-space: nowrap;
+}
+
+
+/* DATATABLES CONTROLS */
+
+.dt-container {
+    font-family: "Outfit", sans-serif;
+}
+
+
+/* SEARCH */
+
+.dt-search input {
+    border: 1px solid #dee2e6;
+
+    border-radius: 8px;
+
+    padding: 8px 12px;
+
+    margin-left: 8px;
+}
+
+
+.dt-search input:focus {
+    border-color: var(--primary-color);
+
+    box-shadow: 0 0 0 0.2rem rgba(54, 32, 255, 0.15);
+
+    outline: none;
+}
+
+
+/* LENGTH SELECT */
+
+.dt-length select {
+    border: 1px solid #dee2e6;
+
+    border-radius: 8px;
+
+    padding: 6px 30px 6px 10px;
+}
+
+
+/* PAGINATION */
+
+.dt-paging .pagination {
+    margin-bottom: 0;
+}
+
+
+/* ACTIVE PAGE */
+
+.dt-paging .page-item.active .page-link {
+    background-color: var(--primary-color);
+
+    border-color: var(--primary-color);
+
+    color: white;
+}
+
+
+/* PAGINATION HOVER */
+
+.dt-paging .page-link:hover {
+    color: var(--primary-color);
+
+    background-color: #f0efff;
+}
+
+
+/* INFO TEXT */
+
+.dt-info {
+    color: var(--muted-color);
+}
+
+/* =====================================================
+BUTTON
+===================================================== */
+
+.btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.btn-outline-primary {
+  background: white;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--btn-outline-hover);
+  border-color: var(--btn-outline-hover);
+  color: white;
+}
+
+.btn-warning {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.btn-warning:hover {
+  background: var(--accent-hover); 
+  border-color: var(--accent-hover);
+}
+
+.update-delete {
+  padding-top: 10px;
+}
+
+/* =====================================================
+EMPTY PRODUCT
+===================================================== */
+
+.empty-product {
+  background: white;
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+  color: #adb5bd;
+}
+
+.empty-product h4 {
+  color: var(--text-color);
+}
+
+/* =====================================================
+   DATATABLES PAGINATION
+===================================================== */
+
+.dt-paging {
+    margin-top: 20px;
+}
+
+.dt-paging .pagination {
+    margin-bottom: 0;
+    gap: 4px;
+}
+
+.dt-paging .page-link {
+    color: var(--primary-color);
+
+    border: 1px solid #dee2e6;
+
+    border-radius: 8px !important;
+
+    padding: 8px 12px;
+
+    transition: 0.2s;
+}
+
+.dt-paging .page-link:hover {
+    background-color: var(--primary-color);
+
+    border-color: var(--primary-color);
+
+    color: white;
+}
+
+.dt-paging .page-item.active .page-link {
+    background-color: var(--primary-color);
+
+    border-color: var(--primary-color);
+
+    color: white;
+}
+
+.dt-paging .page-item.disabled .page-link {
+    color: #adb5bd;
+
+    background-color: #f8f9fa;
+
+    border-color: #dee2e6;
+}
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.custom-footer {
+  background: var(--footer-bg);
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: 0.3s;
+}
+
+.footer-link:hover {
+  color: var(--accent-color);
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media (max-width: 991px) {
+.footer-link {
+    margin-left: 0;
+
+    margin-right: 15px;
+}
+}
