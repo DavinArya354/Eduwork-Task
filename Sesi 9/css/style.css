@@ -105,15 +105,123 @@ CART
 }
 
 /* =====================================================
+Filter card: category, show products, search
+===================================================== */
+
+.product-filter-card {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+}
+
+.category-filter {
+    flex: 1;
+}
+
+.category-filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-filter-form .form-select {
+    width: 320px;
+}
+
+.dataTable-controls {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 24px;
+    flex: 0 1 auto;
+    min-width: 0;
+    margin-left: auto;
+}
+
+.dataTable-controls .dt-length,
+.dataTable-controls .dt-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.dataTable-controls .dt-search input {
+    width: 180px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Active Filter */
+.product-category {
+    color: #212529;
+    background-color: var(--accent-color);
+}
+
+/* Tablet dan layar kecil */
+@media (max-width: 1000px) {
+    .product-filter-card {
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+
+    .category-filter {
+        flex-basis: 100%;
+    }
+
+    .dataTable-controls {
+        flex: 1 1 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-filter-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .category-filter-form {
+        flex-wrap: wrap;
+    }
+
+    .category-filter-form .form-select {
+        flex-basis: 100%;
+    }
+
+    .dataTable-controls {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .dataTable-controls .dt-search {
+        flex: 1 1 100%;
+        white-space: normal;
+    }
+
+    .dataTable-controls .dt-search input {
+        flex: 1;
+        width: auto;
+    }
+}
+
+/* =====================================================
 PRODUCT CARD
 ===================================================== */
 
 .product-card {
   border: none;
-
   background: var(--card-bg);
   border-radius: 12px;
-
   overflow: hidden;
   transition: 0.3s;
 }
@@ -128,65 +236,58 @@ PRODUCT TABLE
 ===================================================== */
 
 .product-table-card {
+    width: 100%;
+    min-width: 0;
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
+    border-radius: 12px;
+    padding: 16px;
 }
 
 
 /* TABLE */
-
 .product-table {
     margin-bottom: 0 !important;
 }
 
 
 /* TABLE HEADER */
-
 .product-table thead th {
     background: var(--primary-color);
-    color: white;
-
-    font-weight: 600;
-    white-space: nowrap;
-
     border: none;
+    color: white;
+    font-weight: 600;
+
+    white-space: nowrap;
     padding: 14px 16px;
 }
 
 
 /* TABLE BODY */
-
 .product-table tbody td {
     padding: 14px 16px;
-
     vertical-align: middle;
 }
 
 
 /* TABLE HOVER */
-
 .product-table tbody tr:hover {
     background-color: #f8f9ff;
 }
 
 
 /* PRODUCT IMAGE */
-
 .product-table-image {
     width: 60px;
     height: 60px;
-
     object-fit: cover;
-
     border-radius: 8px;
-
     background: #eeeeee;
 }
 
 
 /* NO IMAGE */
-
 .product-table-no-image {
     width: 60px;
     height: 60px;
@@ -196,128 +297,46 @@ PRODUCT TABLE
     justify-content: center;
 
     background: #eeeeee;
-
     border-radius: 8px;
-
     color: #adb5bd;
-
     font-size: 1.5rem;
 }
 
 
 /* DESCRIPTION */
-
 .product-description {
     max-width: 300px;
-
     color: var(--muted-color);
-
     font-size: 0.9rem;
 }
 
 
 /* PRICE */
-
 .product-table-price {
     color: var(--primary-color);
-
     font-weight: 700;
-
     white-space: nowrap;
 }
 
 
 /* CATEGORY */
-
 .product-table .product-category {
     background: var(--accent-color);
-
     color: black;
-
     font-weight: 500;
-
     white-space: nowrap;
 }
 
 
 /* ACTION */
-
 .product-table td:last-child {
     white-space: nowrap;
 }
 
 
 /* DATATABLES CONTROLS */
-
 .dt-container {
     font-family: "Outfit", sans-serif;
-}
-
-
-/* SEARCH */
-
-.dt-search input {
-    border: 1px solid #dee2e6;
-
-    border-radius: 8px;
-
-    padding: 8px 12px;
-
-    margin-left: 8px;
-}
-
-
-.dt-search input:focus {
-    border-color: var(--primary-color);
-
-    box-shadow: 0 0 0 0.2rem rgba(54, 32, 255, 0.15);
-
-    outline: none;
-}
-
-
-/* LENGTH SELECT */
-
-.dt-length select {
-    border: 1px solid #dee2e6;
-
-    border-radius: 8px;
-
-    padding: 6px 30px 6px 10px;
-}
-
-
-/* PAGINATION */
-
-.dt-paging .pagination {
-    margin-bottom: 0;
-}
-
-
-/* ACTIVE PAGE */
-
-.dt-paging .page-item.active .page-link {
-    background-color: var(--primary-color);
-
-    border-color: var(--primary-color);
-
-    color: white;
-}
-
-
-/* PAGINATION HOVER */
-
-.dt-paging .page-link:hover {
-    color: var(--primary-color);
-
-    background-color: #f0efff;
-}
-
-
-/* INFO TEXT */
-
-.dt-info {
-    color: var(--muted-color);
 }
 
 /* =====================================================
@@ -375,6 +394,136 @@ EMPTY PRODUCT
   color: var(--text-color);
 }
 
+#dataTable-controls .dt-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+#dataTable-controls .dt-search input {
+    width: 180px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+
+    .product-filter-card {
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+
+    .category-filter {
+        width: 100%;
+        flex-basis: 100%;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .product-filter-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .category-filter-form {
+        flex-wrap: wrap;
+    }
+
+    .category-filter-form .form-select {
+        width: 100%;
+    }
+
+    #product-length-container,
+    #product-search-container {
+        width: 100%;
+    }
+
+    #product-search-container .dt-search {
+        width: 100%;
+    }
+
+    #product-search-container .dt-search input {
+        flex: 1;
+        width: auto;
+    }
+}
+
+/* ================= DATA TABLES ================= */
+.dt-container {
+    width: 100%;
+}
+
+.dt-layout-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dt-layout-cell {
+    min-width: 0;
+}
+
+.dt-layout-cell.dt-layout-start {
+    flex: 1;
+}
+
+.dt-layout-cell.dt-layout-end {
+    flex: 0 1 300px;
+}
+
+/* Search */
+.dt-search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.dt-search label {
+    white-space: nowrap;
+}
+
+.dt-search input {
+    width: 220px;
+    max-width: 100%;
+}
+
+/* Show products */
+.dt-length select {
+    width: auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .dt-layout-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dt-layout-cell.dt-layout-end {
+        flex: 1;
+        width: 100%;
+    }
+
+    .dt-search {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .dt-search input {
+        flex: 1;
+        width: auto;
+    }
+}
+
 /* =====================================================
    DATATABLES PAGINATION
 ===================================================== */
@@ -390,38 +539,33 @@ EMPTY PRODUCT
 
 .dt-paging .page-link {
     color: var(--primary-color);
-
     border: 1px solid #dee2e6;
-
     border-radius: 8px !important;
-
     padding: 8px 12px;
-
     transition: 0.2s;
 }
 
 .dt-paging .page-link:hover {
     background-color: var(--primary-color);
-
     border-color: var(--primary-color);
-
     color: white;
 }
 
 .dt-paging .page-item.active .page-link {
     background-color: var(--primary-color);
-
     border-color: var(--primary-color);
-
     color: white;
 }
 
 .dt-paging .page-item.disabled .page-link {
     color: #adb5bd;
-
     background-color: #f8f9fa;
-
     border-color: #dee2e6;
+}
+
+.dt-paging .dt-paging-button.page-item:hover {
+    background-color: var(--card-bg);
+    border: none;
 }
 
 /* =====================================================
