@@ -72,6 +72,10 @@ require_once __DIR__ . "/../components/header.php";
                     Browse all products available in our store.
                 </p>
             </div>
+
+            <div class="addProduct">
+                <a href="../product/form/product-form.html">Add Product</a>
+            </div>
         </div>
 
         <!-- =================================================
@@ -202,7 +206,7 @@ require_once __DIR__ . "/../components/header.php";
                                     <td>
                                         <div class="d-flex gap-2">
                                             <a
-                                                href="product-edit.php?id=<?= urlencode((string) $product["id"]) ?>"
+                                                href="/Eduwork/Sesi%208/crud/product-edit.php?id=<?= urlencode((string) $product["id"]) ?>"
                                                 class="btn btn-outline-primary btn-sm"
                                                 title="Update Product"
                                             >
@@ -210,7 +214,7 @@ require_once __DIR__ . "/../components/header.php";
                                             </a>
 
                                             <a
-                                                href="product-delete.php?id=<?= urlencode((string) $product["id"]) ?>"
+                                                href="/Eduwork/Sesi%208/crud/product-delete.php?id=<?= urlencode((string) $product["id"]) ?>"
                                                 class="btn btn-outline-danger btn-sm"
                                                 title="Delete Product"
                                                 onclick="return confirm('Are you sure you want to delete this product?');"
@@ -226,7 +230,6 @@ require_once __DIR__ . "/../components/header.php";
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
