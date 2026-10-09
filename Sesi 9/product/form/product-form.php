@@ -1,6 +1,6 @@
 <?php
 
-require_once "../Sesi 8/config/database.php";
+require_once "../../config/database.php";
 
 // ===============================
 // CEK METHOD REQUEST
@@ -108,10 +108,16 @@ if ($stock === "") {
 // VALIDASI CATEGORY
 // ===============================
 $allowedCategories = [
+    "Elektronik",
+    "Gadget",
+    "Smartphone",
     "Laptop",
-    "Handphone",
-    "Monitor",
     "Gaming",
+    "Computer",
+    "Aksesoris",
+    "Fashion",
+    "Sport",
+    "Home Tools",
     "Lainnya"
 ];
 
@@ -144,7 +150,7 @@ if (!empty($errors)) {
 // ==========================================
 // BUAT FOLDER UPLOAD
 // ==========================================
-$uploadDirectory = "uploads/products/";
+$uploadDirectory = "../../../uploads/products/";
 
 if (!is_dir($uploadDirectory)) {
     mkdir($uploadDirectory, 0777, true);
@@ -172,6 +178,6 @@ if (!move_uploaded_file($image["tmp_name"], $destination)) {
 // ==========================================
 $_POST["image"] = $destination;
 
-require_once "../Sesi 8/crud/product-create.php";
+require_once "../crud/product-create.php";
 
 ?>
