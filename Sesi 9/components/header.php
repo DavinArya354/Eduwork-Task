@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/../config/app.php";
 $pageTitle = $pageTitle ?? "Arctic Store";
 ?>
 
@@ -31,7 +32,7 @@ $pageTitle = $pageTitle ?? "Arctic Store";
     >
 
     <!--Custom CSS -->
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
 </head>
 
 <body>
@@ -62,31 +63,14 @@ $pageTitle = $pageTitle ?? "Arctic Store";
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="product-read.php">
+                <a class="nav-link" href="<?= BASE_URL ?>/product/crud/product-read.php">
                     New Releases
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="products.php">
+                <a class="nav-link" href="<?= BASE_URL ?>/product/products.php">
                     All Products
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    Orders
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link position-relative" href="cart.html">
-                    <i class="bi bi-cart3 fs-5"></i>
-                    <span
-                        class="top-0 start-100 translate-middle cart-badge"
-                        id="cart-count">
-                        0
-                    </span>
                 </a>
             </li>
         </ul>
