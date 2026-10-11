@@ -48,6 +48,81 @@ body {
 }
 
 /* =====================================================
+BUTTON
+===================================================== */
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.addProduct {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.addProduct>a {
+    color: white;
+    font-style: normal;
+}
+
+.addProduct:hover {
+    background-color: var(--primary-hover);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btn-outline-primary {
+  background: transparent;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--btn-outline-hover);
+  border-color: var(--btn-outline-hover);
+  color: white;
+}
+
+.btn-warning {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.btn-warning:hover {
+  background: var(--accent-hover); 
+  border-color: var(--accent-hover);
+}
+
+.btn-outline-danger {
+  background: transparent;
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+}
+
+.btn-outline-danger:hover {
+  background: var(--danger-color); 
+  border-color: var(--danger-color);
+  color: white;
+}
+
+.update-delete {
+  padding-top: 10px;
+}
+
+/* =====================================================
 NAVBAR
 ===================================================== */
 
@@ -103,6 +178,10 @@ CART
     font-weight: 600;
     padding: 2px;
 }
+
+/* =====================================================
+ALL PRODUCTS PAGE
+===================================================== */
 
 /* =====================================================
 Filter card: category, show products, search
@@ -264,18 +343,43 @@ PRODUCT TABLE
 }
 
 
+/* ================= ALL PRODUCTS TABLE ================= */
+
+#productTable {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-color);
+
+    background-color: transparent;
+}
+
+/* Background dan warna teks setiap sel */
+#productTable > :not(caption) > * > * {
+    background-color: transparent !important;
+}
+
+#productTable thead tr {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Garis pemisah antarproduk */
+#productTable tbody tr {
+    border-bottom: 1px solid #d9e0ea;
+}
+
+/* Hover baris produk */
+#productTable tbody tr:hover > * {
+    background-color: #fefeff !important;
+    color: #08085E !important;
+}
+
+
+
 /* TABLE BODY */
 .product-table tbody td {
     padding: 14px 16px;
     vertical-align: middle;
 }
-
-
-/* TABLE HOVER */
-.product-table tbody tr:hover {
-    background-color: #f8f9ff;
-}
-
 
 /* PRODUCT IMAGE */
 .product-table-image {
@@ -318,7 +422,6 @@ PRODUCT TABLE
     white-space: nowrap;
 }
 
-
 /* CATEGORY */
 .product-table .product-category {
     background: var(--accent-color);
@@ -327,56 +430,14 @@ PRODUCT TABLE
     white-space: nowrap;
 }
 
-
 /* ACTION */
 .product-table td:last-child {
     white-space: nowrap;
 }
 
-
 /* DATATABLES CONTROLS */
 .dt-container {
     font-family: "Outfit", sans-serif;
-}
-
-/* =====================================================
-BUTTON
-===================================================== */
-
-.btn-primary {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.btn-primary:hover {
-  background: var(--primary-hover);
-  border-color: var(--primary-hover);
-}
-
-.btn-outline-primary {
-  background: white;
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
-.btn-outline-primary:hover {
-  background: var(--btn-outline-hover);
-  border-color: var(--btn-outline-hover);
-  color: white;
-}
-
-.btn-warning {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-.btn-warning:hover {
-  background: var(--accent-hover); 
-  border-color: var(--accent-hover);
-}
-
-.update-delete {
-  padding-top: 10px;
 }
 
 /* =====================================================
@@ -567,6 +628,10 @@ EMPTY PRODUCT
     background-color: var(--card-bg);
     border: none;
 }
+
+/* =====================================================
+ALL PRODUCTS PAGE END
+===================================================== *
 
 /* =====================================================
 FOOTER
