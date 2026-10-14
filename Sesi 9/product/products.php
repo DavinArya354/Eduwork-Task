@@ -3,6 +3,7 @@
 $pageTitle = "All Products";
 
 require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "/../config/app.php";
 
 // =====================================================
 // AMBIL KATEGORI
@@ -158,6 +159,9 @@ require_once __DIR__ . "/../components/header.php";
 
                         <tbody>
                             <?php foreach ($products as $product): ?>
+
+                                <?php $imageUrl = product_image_url($product["image"]); ?>
+
                                 <tr>
                                     <td class="fw-semibold">
                                         <?= htmlspecialchars((string) $product["id"], ENT_QUOTES, 'UTF-8') ?>
@@ -166,7 +170,7 @@ require_once __DIR__ . "/../components/header.php";
                                     <td>
                                         <?php if (!empty($product["image"])): ?>
                                             <img
-                                                src="/Eduwork/Sesi%207/<?= htmlspecialchars($product["image"], ENT_QUOTES, 'UTF-8') ?>"
+                                                src="<?= htmlspecialchars($imageUrl, ENT_QUOTES, 'UTF-8') ?>"
                                                 class="product-table-image"
                                                 alt="<?= htmlspecialchars($product["name"], ENT_QUOTES, 'UTF-8') ?>"
                                             >
@@ -206,7 +210,7 @@ require_once __DIR__ . "/../components/header.php";
                                     <td>
                                         <div class="d-flex gap-2">
                                             <a
-                                                href="/Eduwork/Sesi%208/crud/product-edit.php?id=<?= urlencode((string) $product["id"]) ?>"
+                                                href="/Eduwork/Sesi%209/product/form/product-edit.php?id=<?= urlencode((string) $product["id"]) ?>"
                                                 class="btn btn-outline-primary btn-sm"
                                                 title="Update Product"
                                             >
@@ -214,7 +218,7 @@ require_once __DIR__ . "/../components/header.php";
                                             </a>
 
                                             <a
-                                                href="/Eduwork/Sesi%208/crud/product-delete.php?id=<?= urlencode((string) $product["id"]) ?>"
+                                                href="/Eduwork/Sesi%209/product/crud/product-delete.php?id=<?= urlencode((string) $product["id"]) ?>"
                                                 class="btn btn-outline-danger btn-sm"
                                                 title="Delete Product"
                                                 onclick="return confirm('Are you sure you want to delete this product?');"
