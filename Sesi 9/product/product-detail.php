@@ -3,6 +3,7 @@ session_start();
 
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . "/../config/app.php";
+require_once __DIR__ . "/../components/header.php";
 
 // Ambil ID produk dari URL.
 $productId = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
@@ -356,3 +357,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </body>
 </html>
+
+<?php require_once __DIR__ . "/../components/footer.php"; ?>
