@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../config/app.php";
 
 // Pastikan request berasal dari POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -35,14 +36,18 @@ if (!$currentProduct) {
 }
 
 // Pertahankan gambar lama
-$image = $currentProduct["image"];
+$image = product_image_filename($currentProduct["image"]);
 
 // Jika user memilih gambar baru
 if (
     isset($_FILES["image"]) &&
     $_FILES["image"]["error"] === UPLOAD_ERR_OK
 ) {
-    $uploadDir = __DIR__ . "/../../../Sesi 7/uploads/products/";
+    $uploadDir = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+
+    if (!is_dir($uploadDir) && !mkdir($uploadDir, 0755, true) && !is_dir($uploadDir)) {
+        throw new RuntimeException("Gagal membuat folder gambar produk.");
+    }
 
     $extension = strtolower(
         pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION)
@@ -63,7 +68,7 @@ if (
     }
 
     // Ganti dengan gambar baru
-    $image = "uploads/products/" . $fileName;
+    $image = $fileName;
 }
 
 // Update product
