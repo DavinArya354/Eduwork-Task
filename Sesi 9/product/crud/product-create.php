@@ -1,11 +1,12 @@
 <?php
 
 require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../config/app.php";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $name = $_POST["name"];
     $description = $_POST["description"];
-    $image = $_POST["image"];
+    $image = product_image_filename($_POST["image"] ?? "");
     $price = $_POST["price"];
     $stock = $_POST["stock"];
     $category = $_POST["category"];
