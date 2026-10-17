@@ -1,0 +1,132 @@
+:root {
+    --primary-color: #3620ff;
+    --primary-hover: #2814d9;
+    --accent-color: #a3ff2b;
+    --accent-hover: #8fee14;
+    --body-bg: #f5f7fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.home-page {
+    background: var(--body-bg);
+    font-family: "Outfit", sans-serif;
+}
+
+.custom-navbar,
+.custom-footer {
+    background: var(--primary-color);
+}
+
+.home-page .navbar-brand {
+    font-size: calc(1.3rem + 0.6vw);
+}
+
+.home-page .nav-link {
+    font-weight: 500;
+    margin-left: 10px;
+    transition: color .3s;
+}
+
+.home-page .nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+.home-page .cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.home-page .cart-badge {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 50%;
+    background: #e91026;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 17px;
+    text-align: center;
+}
+
+.home-page .hero {
+    background: linear-gradient(135deg, slateblue, darkblue);
+    color: #fff;
+    padding: 80px 0;
+}
+
+.home-page .hero-art {
+    color: var(--accent-color);
+    font-size: clamp(8rem, 20vw, 15rem);
+    line-height: 1;
+    filter: drop-shadow(0 16px 18px rgba(0, 0, 0, .2));
+}
+
+.home-page .btn-warning {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.home-page .btn-warning:hover,
+.home-page .btn-warning:focus {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.home-page .product-card {
+    border: 0;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.home-page .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2) !important;
+}
+
+.home-page .card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+.home-page .product-category {
+    color: var(--primary-color);
+}
+
+.home-page .product-price {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+}
+
+.home-page .filter-card .card-header {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.home-page .footer-link {
+    display: inline-block;
+    margin-left: 14px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.home-page .footer-link:hover {
+    color: var(--accent-color);
+}
+
+@media (max-width: 560px) {
+    .home-page .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .home-page .hero {
+        padding: 56px 0;
+    }
+}
