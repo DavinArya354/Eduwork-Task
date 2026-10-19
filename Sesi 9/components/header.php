@@ -1,5 +1,80 @@
 <?php
 require_once __DIR__ . "/../config/app.php";
+
+// isStoreHeader digunakan untuk menentukan apakah header yang akan ditampilkan adalah header khusus untuk tampilan toko atau header umum.
+$isStoreHeader = ($storeLayout ?? false) === true
+    || (($_GET["component"] ?? "") === "header");
+
+if ($isStoreHeader) {
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+
+    // $activePage digunakan untuk menentukan halaman aktif saat ini, yang dapat memengaruhi tampilan dan perilaku header.
+    $requestedActivePage = $activePage ?? ($_GET["active"] ?? "");
+    $activePage = in_array($requestedActivePage, ["home", "cart", "product"], true)
+        ? $requestedActivePage
+        : "";
+    $cart = is_array($_SESSION["cart"] ?? null) ? $_SESSION["cart"] : []; // Mengambil data keranjang dari sesi, jika ada, atau menginisialisasinya sebagai array kosong.
+    $storeCartCount = isset($cartCount) // Jika $cartCount sudah ditentukan sebelumnya, gunakan nilainya.
+        ? (int) $cartCount
+        : array_sum(array_map(
+            static fn ($item) => is_array($item) ? max(0, (int) ($item["qty"] ?? 0)) : 0,
+            $cart
+        ));
+    $homeUrl = BASE_URL . "user/home.html"; 
+    $productsUrl = $activePage === "home" // Jika halaman aktif adalah "home", tambahkan anchor "#product-list" ke URL produk, jika tidak, gunakan URL produk tanpa anchor.
+        ? "#product-list"
+        : $homeUrl . "#product-list";
+    ?>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar cart-navbar shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" href="<?= htmlspecialchars($homeUrl, ENT_QUOTES, "UTF-8") ?>">
+                <i class="bi bi-bag-fill"></i>
+                ArcticStore
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#storeNavbar"
+                aria-controls="storeNavbar"
+                aria-expanded="false"
+                aria-label="Buka navigasi">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="storeNavbar"> 
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link<?= $activePage === "home" ? " active" : "" ?>" href="<?= htmlspecialchars($homeUrl, ENT_QUOTES, "UTF-8") ?>">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link<?= $activePage === "product" ? " active" : "" ?>" href="<?= htmlspecialchars($productsUrl, ENT_QUOTES, "UTF-8") ?>">
+                            Produk
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link cart-link<?= $activePage === "cart" ? " active" : "" ?>"
+                            href="<?= htmlspecialchars(BASE_URL . "user/cart.php", ENT_QUOTES, "UTF-8") ?>"
+                            aria-label="Keranjang">
+                            <i class="bi bi-cart3"></i>
+                            <span class="cart-badge" id="cart-count"><?= $storeCartCount ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <?php
+    return;
+}
+
 $pageTitle = $pageTitle ?? "Arctic Store";
 ?>
 
@@ -32,7 +107,11 @@ $pageTitle = $pageTitle ?? "Arctic Store";
     >
 
     <!--Custom CSS -->
-        <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+
+    <?php foreach ($pageStyles ?? [] as $pageStyle): ?>
+        <link rel="stylesheet" href="<?= htmlspecialchars($pageStyle, ENT_QUOTES, "UTF-8") ?>">
+    <?php endforeach; ?>
 </head>
 
 <body>
@@ -41,7 +120,7 @@ $pageTitle = $pageTitle ?? "Arctic Store";
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
     <div class="container">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="../user/home.html">
         Arctic Store
     </a>
 
@@ -57,19 +136,19 @@ $pageTitle = $pageTitle ?? "Arctic Store";
     <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?= BASE_URL ?>user/home.html">
                     Home
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= BASE_URL ?>/product/crud/product-read.php">
+                <a class="nav-link" href="<?= BASE_URL ?>product/crud/product-read.php">
                     New Releases
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= BASE_URL ?>/product/products.php">
+                <a class="nav-link" href="<?= BASE_URL ?>product/products.php">
                     All Products
                 </a>
             </li>
