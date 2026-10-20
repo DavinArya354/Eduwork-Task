@@ -162,13 +162,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
 
-        $_SESSION["cart_notice"] = [
-            "type" => $hasSelectedItem ? "info" : "warning",
-            "message" => $hasSelectedItem
-                ? "Fitur checkout belum tersedia."
-                : "Pilih setidaknya satu produk untuk checkout."
-        ];
-        redirect_to_cart();
+        if (!$hasSelectedItem) {
+            $_SESSION["cart_notice"] = [
+                "type" => "warning",
+                "message" => "Pilih setidaknya satu produk untuk checkout."
+            ];
+            redirect_to_cart();
+        }
+
+        header("Location: " . BASE_URL . "user/checkout.php");
+        exit;
     }
 
     // Menangani aksi pengubahan jumlah produk di keranjang, termasuk menambah, mengurangi, atau menghapus produk.
