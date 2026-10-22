@@ -3,7 +3,6 @@ session_start();
 
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . "/../config/app.php";
-require_once __DIR__ . "/../components/header.php";
 
 // Ambil ID produk dari URL.
 $productId = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
@@ -85,127 +84,49 @@ $formattedPrice = "Rp " . number_format(
     "."
 );
 
-// Proses Add to Cart.
-$cartMessage = "";
+$storeLayout = true;
+$activePage = "product";
+$cart = is_array($_SESSION["cart"] ?? null) ? $_SESSION["cart"] : [];
+$cartCount = array_sum(array_map(
+    static fn ($item) => is_array($item) ? max(0, (int) ($item["qty"] ?? 0)) : 0,
+    $cart
+));
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $action = $_POST["action"] ?? "";
-
-    // Pastikan tombol Add to Cart yang ditekan.
-    if ($action === "add_to_cart") {
-        $quantity = filter_input(
-            INPUT_POST,
-            "quantity",
-            FILTER_VALIDATE_INT
-        );
-
-        if (!$quantity || $quantity < 1) {
-            $cartMessage = "Jumlah produk tidak valid.";
-        } elseif ($product["stock"] < 1) {
-            $cartMessage = "Stok produk sedang habis.";
-        } else {
-            // Buat keranjang jika belum tersedia.
-            if (!isset($_SESSION["cart"])) {
-                $_SESSION["cart"] = [];
-            }
-
-            // Hitung jumlah yang sudah ada di keranjang.
-            $currentQty = $_SESSION["cart"][$productId]["qty"] ?? 0;
-
-            if ($currentQty + $quantity > $product["stock"]) {
-                $cartMessage = "Jumlah melebihi stok yang tersedia.";
-            } else {
-                $_SESSION["cart"][$productId] = [
-                    "id" => (int) $product["id"],
-                    "name" => $product["name"],
-                    "price" => (float) $product["price"],
-                    "qty" => $currentQty + $quantity,
-                    "image" => $images[0]
-                ];
-
-                // Redirect agar form tidak terkirim ulang saat refresh.
-                header("Location: cart.php");
-                exit;
-            }
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detail produk Arctic Store.">
 
     <title><?= e($product["name"]) ?> - Arctic Store</title>
 
-    <!-- Bootstrap CSS -->
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-    <!-- Bootstrap Icons -->
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-        rel="stylesheet"
-    >
-
-    <!-- CSS project yang sudah ada -->
-    <link rel="stylesheet" href="../css/style.css">
-
-    <style>
-        .detail-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, .06);
-        }
-
-        .product-gallery {
-            background: #f5f7fb;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .product-gallery .carousel-item img {
-            width: 100%;
-            height: 420px;
-            object-fit: contain;
-        }
-
-        .detail-price {
-            color: #3620ff;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .detail-description {
-            white-space: pre-line;
-            line-height: 1.8;
-        }
-
-        .quantity-input {
-            max-width: 100px;
-        }
-
-        @media (max-width: 767px) {
-            .product-gallery .carousel-item img {
-                height: 300px;
-            }
-        }
-    </style>
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="<?= e(BASE_URL) ?>css/style.css">
+    <link rel="stylesheet" href="<?= e(BASE_URL) ?>product/product-detail.css">
 </head>
 
-<body>
+<body class="product-detail-page">
+<?php require __DIR__ . "/../components/header.php"; ?>
 
 <main class="container py-5">
 
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="products.php">Produk</a>
+                <a href="<?= e(BASE_URL) ?>user/home.html#product-list">Produk</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
                 Detail Produk
@@ -292,18 +213,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <?= e($product["description"] ?? "") ?>
                 </div>
 
-                <?php if ($cartMessage !== ""): ?>
-                    <div class="alert alert-warning" role="alert">
-                        <?= e($cartMessage) ?>
-                    </div>
-                <?php endif; ?>
-
                 <?php if ((int) $product["stock"] > 0): ?>
-                    <form method="POST" action="">
+                    <form method="POST" action="<?= e(BASE_URL) ?>user/cart.php">
                         <input
                             type="hidden"
                             name="action"
                             value="add_to_cart"
+                        >
+                        <input
+                            type="hidden"
+                            name="product_id"
+                            value="<?= (int) $product["id"] ?>"
                         >
 
                         <div class="mb-3">
@@ -352,10 +272,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </main>
 
-<!-- Bootstrap JavaScript Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<?php require __DIR__ . "/../components/footer.php"; ?>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-<?php require_once __DIR__ . "/../components/footer.php"; ?>
