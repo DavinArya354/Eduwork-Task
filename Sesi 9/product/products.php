@@ -75,7 +75,7 @@ require_once __DIR__ . "/../components/header.php";
             </div>
 
             <div class="addProduct">
-                <a href="../product/form/product-form.html">Add Product</a>
+                <a href="../product/form/product-form-page.php">Add Product</a>
             </div>
         </div>
 
