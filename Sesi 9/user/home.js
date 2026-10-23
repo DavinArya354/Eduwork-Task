@@ -19,7 +19,7 @@ const rupiahFormatter = new Intl.NumberFormat("id-ID", { style: "currency", curr
 
 async function loadStoreComponents() { // Memuat navbar dan footer bersama dari komponen PHP.
     const components = [ // Menentukan komponen bersama yang perlu dimuat.
-        { url: "../components/header.php?component=header&active=home", target: headerContainer }, // Menyiapkan endpoint navbar bersama.
+        { url: "../components/header.php?component=header&active=home&q=" + encodeURIComponent(new URLSearchParams(window.location.search).get("q") || ""), target: headerContainer }, // Menyiapkan endpoint navbar bersama.
         { url: "../components/footer.php?component=footer", target: footerContainer } // Menyiapkan endpoint footer bersama.
     ]; // Menutup daftar komponen.
     await Promise.all(components.map(async function (component) { // Memuat kedua komponen secara bersamaan.
