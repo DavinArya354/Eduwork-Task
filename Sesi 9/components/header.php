@@ -23,6 +23,9 @@ if ($isStoreHeader) {
             $cart
         ));
     $homeUrl = BASE_URL . "user/home.html"; 
+    $searchQuery = isset($_GET["q"]) && is_string($_GET["q"])
+        ? $_GET["q"]
+        : "";
     $productsUrl = $activePage === "home" // Jika halaman aktif adalah "home", tambahkan anchor "#product-list" ke URL produk, jika tidak, gunakan URL produk tanpa anchor.
         ? "#product-list"
         : $homeUrl . "#product-list";
@@ -35,19 +38,32 @@ if ($isStoreHeader) {
                 ArcticStore
             </a>
 
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#storeNavbar"
-                aria-controls="storeNavbar"
-                aria-expanded="false"
-                aria-label="Buka navigasi">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <?php if ($activePage === "home" || $activePage === "product"): ?>
+                <form
+                    class="nav-search-form"
+                    role="search"
+                    aria-label="Cari produk"
+                    action="<?= htmlspecialchars($homeUrl, ENT_QUOTES, "UTF-8") ?>"
+                    method="get">
+                    <label class="visually-hidden" for="searchInput">Cari produk</label>
+                    <div class="input-group">
+                        <span class="input-group-text" aria-hidden="true">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input
+                            type="search"
+                            id="searchInput"
+                            name="q"
+                            class="form-control"
+                            placeholder="Cari produk..."
+                            autocomplete="off"
+                            value="<?= htmlspecialchars($searchQuery, ENT_QUOTES, "UTF-8") ?>">
+                    </div>
+                </form>
+            <?php endif; ?>
 
-            <div class="collapse navbar-collapse" id="storeNavbar"> 
-                <ul class="navbar-nav ms-auto align-items-lg-center">
+            <div class="navbar-links<?= $activePage === "cart" ? " ms-auto" : "" ?>">
+                <ul class="navbar-nav flex-row align-items-center">
                     <li class="nav-item">
                         <a class="nav-link<?= $activePage === "home" ? " active" : "" ?>" href="<?= htmlspecialchars($homeUrl, ENT_QUOTES, "UTF-8") ?>">
                             Home
