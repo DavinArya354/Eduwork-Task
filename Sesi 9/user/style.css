@@ -167,27 +167,29 @@ BUTTON
 }
 
 .cart-page .cart-navbar .cart-link {
-    position: relative;
     display: inline-flex;
     align-items: center;
+    gap: .2em;
     font-size: 1.4rem;
-    padding-right: 1.5rem;
 }
 
 .cart-page .cart-badge {
-    position: absolute;
-    top: -.15rem;
-    right: -.35rem;
+    position: relative;
+    top: -1.5em;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
     margin: 0;
-    min-width: 17px;
-    height: 17px;
-    padding: 0 4px;
+    min-width: 1.7em;
+    height: 1.7em;
+    padding: 0 .3em;
     border-radius: 50%;
     background: #e91026;
     color: #fff;
-    font-size: 10px;
+    font-size: .45em;
     font-weight: 600;
-    line-height: 17px;
+    line-height: 1;
     text-align: center;
 }
 
@@ -220,10 +222,6 @@ BUTTON
         font-size: .9rem;
     }
 
-    .cart-page .cart-navbar .cart-link {
-        padding-right: 1.5rem;
-        font-size: 1.25rem;
-    }
 }
 
 @media (min-width: 300px) and (max-width: 575px) {
@@ -238,6 +236,7 @@ BUTTON
     .cart-page .cart-navbar .cart-link {
         font-size: clamp(.8rem, calc(.65rem + 1vw), 1rem);
     }
+
 }
 
 .cart-page .cart-layout {
