@@ -75,26 +75,28 @@ body.home-page {
 }
 
 .home-page .cart-link {
-    position: relative;
     display: inline-flex;
     align-items: center;
+    gap: .2em;
     font-size: 1.4rem;
-    padding-right: 1.5rem;
 }
 
 .home-page .cart-badge {
-    position: absolute;
-    top: -.15rem;
-    right: -.35rem;
-    min-width: 17px;
-    height: 17px;
-    padding: 0 4px;
+    position: relative;
+    top: -1.5em;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.7em;
+    height: 1.7em;
+    padding: 0 .3em;
     border-radius: 50%;
     background: #e91026;
     color: #fff;
-    font-size: 10px;
+    font-size: .45em;
     font-weight: 600;
-    line-height: 17px;
+    line-height: 1;
     text-align: center;
 }
 
@@ -195,10 +197,6 @@ body.home-page {
         margin-left: 0;
         padding-right: .375rem;
         padding-left: .375rem;
-    }
-
-    .home-page .cart-link {
-        padding-right: 1.5rem;
     }
 
     .home-page .hero {
