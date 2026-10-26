@@ -53,6 +53,7 @@ BUTTON
 
 .btn-primary {
   background: var(--primary-color);
+  border: var(--primary-color);
   color: white;
   padding: 10px;
   border-radius: 10px;
@@ -60,6 +61,7 @@ BUTTON
 
 .btn-primary:hover {
   background: var(--primary-hover);
+  border: var(--primary-hover);
   color: white;
   padding: 10px;
   border-radius: 10px;
@@ -120,6 +122,19 @@ BUTTON
 
 .update-delete {
   padding-top: 10px;
+}
+
+.update-delete .btn {
+  height: 38px;
+  padding: 6px 4px;
+  white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+  .update-delete .btn {
+    height: 32px;
+    font-size: 0.75rem;
+  }
 }
 
 /* =====================================================
@@ -305,9 +320,21 @@ PRODUCT CARD
   transition: 0.3s;
 }
 
+.product-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .product-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 700px) and (max-width: 991.98px) {
+  .new-release-column {
+    width: 33.33333333%;
+  }
 }
 
 /* =====================================================
