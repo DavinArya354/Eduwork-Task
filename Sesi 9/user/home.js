@@ -4,7 +4,6 @@ const categoryFilter = document.getElementById("categoryFilter"); // Mengambil p
 const priceFilter = document.getElementById("priceFilter"); // Mengambil pilihan rentang harga.
 const sortFilter = document.getElementById("sortFilter"); // Mengambil pilihan pengurutan.
 
-const productCount = document.getElementById("product-count"); // Mengambil label jumlah produk.
 let cartCount = null; // Label jumlah barang tersedia setelah navbar dimuat.
 
 const loadingProducts = document.getElementById("loading-products"); // Mengambil pesan saat produk sedang dimuat.
@@ -139,7 +138,6 @@ function filterProducts() { // Memfilter, mengurutkan, dan menampilkan card prod
     } // Menutup pemilihan aturan pengurutan.
 
     productItems.forEach(function (item) { item.classList.toggle("d-none", !visibleProducts.includes(item)); }); // Menampilkan hanya card yang cocok.
-    productCount.textContent = visibleProducts.length + " Produk"; // Memperbarui jumlah hasil yang terlihat.
     emptyFilterResults.classList.toggle("d-none", visibleProducts.length !== 0 || productItems.length === 0); // Menampilkan pesan jika filter tidak menemukan hasil.
     visibleProducts.forEach(function (item) { productList.appendChild(item); }); // Menata ulang card sesuai urutan hasil.
     productList.appendChild(emptyProducts); // Menjaga pesan katalog kosong tetap berada di dalam daftar.
