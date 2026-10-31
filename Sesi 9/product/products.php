@@ -1,6 +1,11 @@
 <?php
 
 $pageTitle = "All Products";
+$bodyClass = "catalog-page";
+$catalogNavbar = true;
+$catalogSearchQuery = isset($_GET["q"]) && is_string($_GET["q"])
+    ? trim($_GET["q"])
+    : "";
 
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . "/../config/app.php";
@@ -23,33 +28,37 @@ $categories = $categoryStmt->fetchAll(PDO::FETCH_COLUMN);
 // =====================================================
 // FILTER CATEGORY
 // =====================================================
-$selectedCategory = $_GET["category"] ?? "";
+$selectedCategory = isset($_GET["category"]) && is_string($_GET["category"])
+    ? trim($_GET["category"])
+    : "";
 
 // =====================================================
 // QUERY PRODUCT
 // =====================================================
+$conditions = [];
+$parameters = [];
+
 if ($selectedCategory !== "") {
-    $sql = "
-        SELECT *
-        FROM products
-        WHERE category = :category
-        ORDER BY id DESC
-    ";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ":category" => $selectedCategory
-    ]);
-} else {
-    $sql = "
-        SELECT *
-        FROM products
-        ORDER BY id DESC
-    ";
-
-    $stmt = $pdo->query($sql);
+    $conditions[] = "category = :category";
+    $parameters[":category"] = $selectedCategory;
 }
 
+if ($catalogSearchQuery !== "") {
+    $conditions[] = "(name LIKE :search_name OR description LIKE :search_description OR category LIKE :search_category)";
+    $searchPattern = "%" . $catalogSearchQuery . "%";
+    $parameters[":search_name"] = $searchPattern;
+    $parameters[":search_description"] = $searchPattern;
+    $parameters[":search_category"] = $searchPattern;
+}
+
+$sql = "SELECT * FROM products";
+if ($conditions !== []) {
+    $sql .= " WHERE " . implode(" AND ", $conditions);
+}
+$sql .= " ORDER BY id DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($parameters);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // =====================================================
@@ -92,6 +101,9 @@ require_once __DIR__ . "/../components/header.php";
                 </label>
 
                 <form method="GET" class="category-filter-form">
+                    <?php if ($catalogSearchQuery !== ""): ?>
+                        <input type="hidden" name="q" value="<?= htmlspecialchars($catalogSearchQuery, ENT_QUOTES, 'UTF-8') ?>">
+                    <?php endif; ?>
                     <select name="category" id="category" class="form-select">
                         <option value="">All Categories</option>
 
