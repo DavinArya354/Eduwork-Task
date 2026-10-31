@@ -1,22 +1,44 @@
 <?php
 
 $pageTitle = "New Releases";
+$bodyClass = "catalog-page";
+$catalogNavbar = true;
+$catalogSearchQuery = isset($_GET["q"]) && is_string($_GET["q"])
+    ? trim($_GET["q"])
+    : "";
 
 require_once __DIR__ . "/../../config/database.php";
 require_once __DIR__ . "/../../config/app.php";
-require_once __DIR__ . "/../../components/header.php";
 
-// Ambil 8 produk terbaru
-$sql = "
-    SELECT *
-    FROM products
-    ORDER BY id DESC
-    LIMIT 8
-";
-
-$stmt = $pdo->query($sql);
+if ($catalogSearchQuery === "") {
+    $sql = "
+        SELECT *
+        FROM products
+        ORDER BY id DESC
+        LIMIT 8
+    ";
+    $stmt = $pdo->query($sql);
+} else {
+    $sql = "
+        SELECT *
+        FROM products
+        WHERE name LIKE :search_name
+           OR description LIKE :search_description
+           OR category LIKE :search_category
+        ORDER BY id DESC
+        LIMIT 8
+    ";
+    $searchPattern = "%" . $catalogSearchQuery . "%";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ":search_name" => $searchPattern,
+        ":search_description" => $searchPattern,
+        ":search_category" => $searchPattern,
+    ]);
+}
 
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+require_once __DIR__ . "/../../components/header.php";
 
 ?>
 
