@@ -130,26 +130,55 @@ $pageTitle = $pageTitle ?? "Arctic Store";
     <?php endforeach; ?>
 </head>
 
-<body>
+<body class="<?= htmlspecialchars($bodyClass ?? "", ENT_QUOTES, "UTF-8") ?>">
 
 <!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar<?= !empty($catalogNavbar) ? " catalog-navbar" : "" ?>">
     <div class="container">
 
-    <a class="navbar-brand" href="../user/home.html">
-        Arctic Store
+    <a class="navbar-brand" href="<?= BASE_URL ?>user/home.html">
+        <?= !empty($catalogNavbar) ? "ArcticStore" : "Arctic Store" ?>
     </a>
 
-    <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNavbar">
+    <?php if (!empty($catalogNavbar)): ?>
+        <form
+            class="catalog-navbar-search"
+            role="search"
+            aria-label="Cari produk"
+            action="<?= htmlspecialchars($_SERVER["PHP_SELF"] ?? "", ENT_QUOTES, "UTF-8") ?>"
+            method="get">
+            <?php if (isset($selectedCategory) && is_string($selectedCategory) && $selectedCategory !== ""): ?>
+                <input type="hidden" name="category" value="<?= htmlspecialchars($selectedCategory, ENT_QUOTES, "UTF-8") ?>">
+            <?php endif; ?>
+            <label class="visually-hidden" for="catalogSearch">Cari produk</label>
+            <div class="input-group">
+                <span class="input-group-text" aria-hidden="true">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input
+                    type="search"
+                    id="catalogSearch"
+                    name="q"
+                    class="form-control"
+                    placeholder="Cari produk..."
+                    autocomplete="off"
+                    value="<?= htmlspecialchars($catalogSearchQuery ?? "", ENT_QUOTES, "UTF-8") ?>">
+            </div>
+        </form>
 
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="catalog-navbar-links">
+    <?php else: ?>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar">
 
-    <div class="collapse navbar-collapse" id="mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+    <?php endif; ?>
         <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
                 <a class="nav-link" href="<?= BASE_URL ?>user/home.html">
