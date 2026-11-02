@@ -1,59 +1,64 @@
 <?php
 
 $pageTitle = "All Products";
+$bodyClass = "catalog-page";
+$catalogNavbar = true;
+$catalogSearchQuery = isset($_GET["q"]) && is_string($_GET["q"])
+    ? trim($_GET["q"])
+    : "";
 
 require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "/../config/app.php";
 
 // =====================================================
 // AMBIL KATEGORI
+// FETCH_COLUMN menghasilkan array string, bukan array asosiatif.
 // =====================================================
 $categorySql = "
     SELECT DISTINCT category
     FROM products
     WHERE category IS NOT NULL
-    AND category != ''
+      AND category != ''
     ORDER BY category ASC
 ";
 
 $categoryStmt = $pdo->query($categorySql);
-
 $categories = $categoryStmt->fetchAll(PDO::FETCH_COLUMN);
 
 // =====================================================
 // FILTER CATEGORY
 // =====================================================
-$selectedCategory = $_GET["category"] ?? "";
+$selectedCategory = isset($_GET["category"]) && is_string($_GET["category"])
+    ? trim($_GET["category"])
+    : "";
 
 // =====================================================
 // QUERY PRODUCT
 // =====================================================
+$conditions = [];
+$parameters = [];
+
 if ($selectedCategory !== "") {
-
-    $sql = "
-        SELECT *
-        FROM products
-        WHERE category = :category
-        ORDER BY id DESC
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ":category" => $selectedCategory
-    ]);
-
-} else {
-
-    $sql = "
-        SELECT *
-        FROM products
-        ORDER BY id DESC
-    ";
-
-    $stmt = $pdo->query($sql);
-
+    $conditions[] = "category = :category";
+    $parameters[":category"] = $selectedCategory;
 }
 
+if ($catalogSearchQuery !== "") {
+    $conditions[] = "(name LIKE :search_name OR description LIKE :search_description OR category LIKE :search_category)";
+    $searchPattern = "%" . $catalogSearchQuery . "%";
+    $parameters[":search_name"] = $searchPattern;
+    $parameters[":search_description"] = $searchPattern;
+    $parameters[":search_category"] = $searchPattern;
+}
+
+$sql = "SELECT * FROM products";
+if ($conditions !== []) {
+    $sql .= " WHERE " . implode(" AND ", $conditions);
+}
+$sql .= " ORDER BY id DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($parameters);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // =====================================================
@@ -64,257 +69,184 @@ require_once __DIR__ . "/../components/header.php";
 ?>
 
 <section class="py-5">
+    <div class="container">
 
-<div class="container">
+        <!-- PAGE HEADER -->
+        <div class="d-flex flex-column flex-md-row
+                    justify-content-between
+                    align-items-md-center
+                    mb-4">
+            <div>
+                <h1 class="fw-bold mb-1">All Products</h1>
+                <p class="text-muted mb-0">
+                    Browse all products available in our store.
+                </p>
+            </div>
 
-    <!-- =================================================
-         PAGE HEADER
-         ================================================= -->
-    <div class="d-flex flex-column flex-md-row
-                justify-content-between
-                align-items-md-center
-                mb-4">
-
-        <div>
-            <h1 class="fw-bold mb-1">
-                All Products
-            </h1>
-
-            <p class="text-muted mb-0">
-                Browse all products available in our store.
-            </p>
+            <div class="addProduct">
+                <a href="../product/form/product-form-page.php">Add Product</a>
+            </div>
         </div>
 
-    </div>
+        <!-- =================================================
+             FILTER CARD: CATEGORY + DATATABLES CONTROLS
+             Show Products dan Search dipindahkan ke sini
+             oleh JavaScript setelah DataTables diinisialisasi.
+             ================================================= -->
+        <div class="product-filter-card">
 
-    <!-- =================================================
-         CATEGORY FILTER
-         ================================================= -->
-    <div class="card border-0 shadow-sm mb-4">
+            <div class="category-filter">
+                <label for="category" class="form-label fw-semibold">
+                    Filter by Category
+                </label>
 
-        <div class="card-body">
-            <form
-                action="products.php"
-                method="GET"
-                class="row g-3 align-items-end">
-
-                <div class="col-md-5">
-                    <label
-                        for="category"
-                        class="form-label fw-semibold">
-                        Filter by Category
-                    </label>
-
-                    <select
-                        name="category"
-                        id="category"
-                        class="form-select">
-
-                        <option value="">
-                            All Categories
-                        </option>
+                <form method="GET" class="category-filter-form">
+                    <?php if ($catalogSearchQuery !== ""): ?>
+                        <input type="hidden" name="q" value="<?= htmlspecialchars($catalogSearchQuery, ENT_QUOTES, 'UTF-8') ?>">
+                    <?php endif; ?>
+                    <select name="category" id="category" class="form-select">
+                        <option value="">All Categories</option>
 
                         <?php foreach ($categories as $category): ?>
-
                             <option
-                                value="<?= htmlspecialchars($category) ?>"
-                                <?= $selectedCategory === $category ? "selected" : "" ?>>
-
-                                <?= htmlspecialchars($category) ?>
+                                value="<?= htmlspecialchars($category, ENT_QUOTES, 'UTF-8') ?>"
+                                <?= $selectedCategory === $category ? "selected" : "" ?>
+                            >
+                                <?= htmlspecialchars($category, ENT_QUOTES, 'UTF-8') ?>
                             </option>
-
                         <?php endforeach; ?>
-
                     </select>
-                </div>
 
-                <div class="col-md-auto">
-                    <button
-                        type="submit"
-                        class="btn btn-primary">
-
+                    <button type="submit" class="btn btn-primary">
                         <i class="bi bi-funnel"></i>
                         Filter
                     </button>
-                </div>
 
-
-                <?php if ($selectedCategory !== ""): ?>
-
-                    <div class="col-md-auto">
-                        <a
-                            href="products.php"
-                            class="btn btn-outline-secondary">
-                            <i class="bi bi-x-lg"></i>
-                            Clear
-                        </a>
-                    </div>
-
-                <?php endif; ?>
-
-            </form>
-        </div>
-
-    </div>
-
-    <!-- =================================================
-         ACTIVE FILTER
-         ================================================= -->
-    <?php if ($selectedCategory !== ""): ?>
-
-        <div class="mb-4">
-            <span class="text-muted">
-                Showing products in:
-            </span>
-
-            <span class="badge product-category">
-                <?= htmlspecialchars($selectedCategory) ?>
-            </span>
-        </div>
-
-    <?php endif; ?>
-
-    <!-- =================================================
-         PRODUCT GRID
-         ================================================= -->
-    <div class="row g-4">
-
-        <?php if (empty($products)): ?>
-
-            <div class="col-12">
-
-                <div class="empty-product text-center py-5">
-                    <i class="bi bi-box-seam display-4"></i>
-
-                    <h4 class="mt-3">
-                        No products found
-                    </h4>
-
-                    <?php if ($selectedCategory !== ""): ?>
-
-                        <p class="text-muted">
-                            There are no products in the
-                            <strong>
-                                <?= htmlspecialchars($selectedCategory) ?>
-                            </strong>
-                            category.
-                        </p>
-
-                    <?php else: ?>
-
-                        <p class="text-muted">
-                            There are currently no products.
-                        </p>
-
-                    <?php endif; ?>
-
-                    <a
-                        href="products.php"
-                        class="btn btn-primary">
-                        View All Products
+                    <a href="products.php" class="btn btn-outline-secondary">
+                        <i class="bi bi-x"></i>
+                        Clear
                     </a>
-                </div>
-
+                </form>
             </div>
 
-        <?php else: ?>
+            <div id="dataTable-controls" class="dataTable-controls">
+                <!-- DataTables length and search controls are moved here. -->
+            </div>
 
-            <?php foreach ($products as $product): ?>
+        </div>
 
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-
-                    <div class="card product-card h-100">
-                        <!-- PRODUCT IMAGE -->
-                        <div class="product-image-wrapper">
-
-                            <?php if (!empty($product["image"])): ?>
-
-                                <img
-                                    src="/Eduwork/Sesi%207/<?= htmlspecialchars($product["image"]) ?>"
-                                    class="product-image"
-                                    alt="<?= htmlspecialchars($product["name"]) ?>">
-
-                            <?php else: ?>
-
-                                <div class="product-no-image">
-                                    <i class="bi bi-image"></i>
-                                </div>
-
-                            <?php endif; ?>
-                        </div>
-
-                        <!-- PRODUCT BODY -->
-                        <div class="card-body d-flex flex-column">
-
-                            <!-- CATEGORY -->
-                            <span
-                                class="badge product-category align-self-start mb-2">
-                                <?= htmlspecialchars($product["category"]) ?>
-                            </span>
-
-                            <!-- NAME -->
-                            <h5 class="card-title fw-bold">
-                                <?= htmlspecialchars($product["name"]) ?>
-                            </h5>
-
-                            <!-- DESCRIPTION -->
-                            <p class="card-text text-muted small">
-                                <?= htmlspecialchars($product["description"]) ?>
-                            </p>
-
-                            <!-- PRICE -->
-                            <h5 class="product-price mt-auto">
-                                Rp <?= number_format(
-                                    $product["price"],
-                                    0,
-                                    ",",
-                                    "."
-                                ) ?>
-                            </h5>
-
-                            <!-- STOCK -->
-                            <p class="small text-muted">
-                                <i class="bi bi-box"></i>
-                                Stock:
-                                <?= htmlspecialchars($product["stock"]) ?>
-                            </p>
-
-                            <!-- ACTIONS -->
-                            <div class="d-flex gap-2">
-                                <!-- UPDATE -->
-                                <a
-                                    href="product-edit.php?id=<?= $product["id"] ?>"
-                                    class="btn btn-outline-primary flex-fill">
-                                    <i class="bi bi-pencil"></i>
-                                    Update
-                                </a>
-
-                                <!-- DELETE -->
-                                <a
-                                    href="product-delete.php?id=<?= $product["id"] ?>"
-                                    class="btn btn-outline-danger flex-fill"
-                                    onclick="return confirm('Are you sure you want to delete this product?');">
-                                    <i class="bi bi-trash"></i>
-                                    Delete
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            <?php endforeach; ?>
-
+        <!-- ACTIVE FILTER -->
+        <?php if ($selectedCategory !== ""): ?>
+            <div class="mb-4">
+                <span class="text-muted">Showing products in:</span>
+                <span class="badge product-category">
+                    <?= htmlspecialchars($selectedCategory, ENT_QUOTES, 'UTF-8') ?>
+                </span>
+            </div>
         <?php endif; ?>
 
-    </div>
+        <!-- =================================================
+             TABLE CARD: TABLE ONLY
+             ================================================= -->
+        <div class="card product-table-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table
+                        id="productTable"
+                        class="table table-hover align-middle product-table"
+                        style="width:100%;"
+                    >
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
-</div>
+                        <tbody>
+                            <?php foreach ($products as $product): ?>
+
+                                <?php $imageUrl = product_image_url($product["image"]); ?>
+
+                                <tr>
+                                    <td class="fw-semibold">
+                                        <?= htmlspecialchars((string) $product["id"], ENT_QUOTES, 'UTF-8') ?>
+                                    </td>
+
+                                    <td>
+                                        <?php if (!empty($product["image"])): ?>
+                                            <img
+                                                src="<?= htmlspecialchars($imageUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                                class="product-table-image"
+                                                alt="<?= htmlspecialchars($product["name"], ENT_QUOTES, 'UTF-8') ?>"
+                                            >
+                                        <?php else: ?>
+                                            <div class="product-table-no-image">
+                                                <i class="bi bi-image"></i>
+                                            </div>
+                                        <?php endif; ?>
+                                    </td>
+
+                                    <td>
+                                        <span class="fw-semibold">
+                                            <?= htmlspecialchars($product["name"], ENT_QUOTES, 'UTF-8') ?>
+                                        </span>
+                                    </td>
+
+                                    <td class="product-description">
+                                        <?= htmlspecialchars($product["description"], ENT_QUOTES, 'UTF-8') ?>
+                                    </td>
+
+                                    <td>
+                                        <span class="product-table-price">
+                                            Rp <?= number_format((float) $product["price"], 0, ",", ".") ?>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars((string) $product["stock"], ENT_QUOTES, 'UTF-8') ?>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge product-category">
+                                            <?= htmlspecialchars($product["category"], ENT_QUOTES, 'UTF-8') ?>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a
+                                                href="/Eduwork/Sesi%209/product/form/product-edit.php?id=<?= urlencode((string) $product["id"]) ?>"
+                                                class="btn btn-outline-primary btn-sm"
+                                                title="Update Product"
+                                            >
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+
+                                            <a
+                                                href="/Eduwork/Sesi%209/product/crud/product-delete.php?id=<?= urlencode((string) $product["id"]) ?>"
+                                                class="btn btn-outline-danger btn-sm"
+                                                title="Delete Product"
+                                                onclick="return confirm('Are you sure you want to delete this product?');"
+                                            >
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<?php
-
-require_once __DIR__ . "/../components/footer.php";
-
-?>
+<?php require_once __DIR__ . "/../components/footer.php"; ?>
