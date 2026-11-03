@@ -1,30 +1,48 @@
 <?php
 
 $pageTitle = "New Releases";
+$bodyClass = "catalog-page";
+$catalogNavbar = true;
+$catalogSearchQuery = isset($_GET["q"]) && is_string($_GET["q"])
+    ? trim($_GET["q"])
+    : "";
 
-require_once __DIR__ . "/../config/database.php";
-require_once __DIR__ . "/../components/header.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../config/app.php";
 
-
-// Ambil 8 produk terbaru
-$sql = "
-    SELECT *
-    FROM products
-    ORDER BY id DESC
-    LIMIT 8
-";
-
-$stmt = $pdo->query($sql);
+if ($catalogSearchQuery === "") {
+    $sql = "
+        SELECT *
+        FROM products
+        ORDER BY id DESC
+        LIMIT 8
+    ";
+    $stmt = $pdo->query($sql);
+} else {
+    $sql = "
+        SELECT *
+        FROM products
+        WHERE name LIKE :search_name
+           OR description LIKE :search_description
+           OR category LIKE :search_category
+        ORDER BY id DESC
+        LIMIT 8
+    ";
+    $searchPattern = "%" . $catalogSearchQuery . "%";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ":search_name" => $searchPattern,
+        ":search_description" => $searchPattern,
+        ":search_category" => $searchPattern,
+    ]);
+}
 
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+require_once __DIR__ . "/../../components/header.php";
 
 ?>
 
 <!-- ================= NEW RELEASES ================= -->
-
-<head>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
 
 <section class="py-5">
 <div class="container">
@@ -40,8 +58,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </p>
         </div>
 
-        <a href="../product/products.php"
-           class="btn btn-outline-primary">
+        <a href="<?= BASE_URL ?>/product/products.php"
+           class="btn-primary">
 
             View All
             <i class="bi bi-arrow-right"></i>
@@ -70,7 +88,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
 
             <?php foreach ($products as $product): ?>
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+
+                <?php $imageUrl = product_image_url($product["image"]); ?>
+
+                <div class="col-6 col-lg-4 col-xl-3 new-release-column">
 
                     <div class="card product-card h-100">
                         <!-- Product Image -->
@@ -79,9 +100,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php if (!empty($product["image"])): ?>
 
                                 <img
-                                    src="/Eduwork/Sesi%207/<?= htmlspecialchars($product["image"]) ?>"
+                                    src="<?= htmlspecialchars($imageUrl, ENT_QUOTES, 'UTF-8') ?>"
                                     class="card-img-top product-image"
-                                    alt="<?= htmlspecialchars($product["name"]) ?>">
+                                    alt="<?= htmlspecialchars($product["name"], ENT_QUOTES, 'UTF-8') ?>"
+                                >
 
                             <?php else: ?>
                                 <div class="product-no-image">
@@ -128,14 +150,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <!-- Action -->
                             <a
-                                href="product-detail.php?id=<?= $product["id"] ?>"
+                                href="../product-detail.php?id=<?= $product["id"] ?>"
                                 class="btn btn-primary w-100">
                                 View Product
                             </a>
                             <div class="update-delete d-flex gap-2">
                                 <!-- UPDATE -->
                                 <a
-                                    href="product-edit.php?id=<?= $product["id"] ?>"
+                                    href="<?= BASE_URL ?>/product/form/product-edit.php?id=<?= $product["id"] ?>"
                                     class="btn btn-outline-primary flex-fill">
                                     <i class="bi bi-pencil"></i>
                                     Update
@@ -143,7 +165,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 <!-- DELETE -->
                                 <a
-                                    href="product-delete.php?id=<?= $product["id"] ?>"
+                                    href="<?= BASE_URL ?>/product/crud/product-delete.php?id=<?= $product["id"] ?>"
                                     class="btn btn-outline-danger flex-fill"
                                     onclick="return confirm('Are you sure you want to delete this product?');">
                                     <i class="bi bi-trash"></i>
@@ -165,6 +187,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 
-require_once __DIR__ . "/../components/footer.php";
+require_once __DIR__ . "/../../components/footer.php";
 
 ?>
