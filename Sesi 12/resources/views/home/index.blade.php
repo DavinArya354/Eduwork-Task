@@ -12,50 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 </head>
 <body class="home-page" id="top">
-    <header id="store-header">
-        <nav class="navbar navbar-dark custom-navbar cart-navbar shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-semibold" href="{{ url('/') }}">
-                    <i class="bi bi-bag-fill" aria-hidden="true"></i>
-                    ArcticStore
-                </a>
-
-                <form class="nav-search-form" role="search" aria-label="Cari produk" action="{{ url('/') }}" method="get">
-                    <label class="visually-hidden" for="searchInput">Cari produk</label>
-                    <div class="input-group">
-                        <span class="input-group-text" aria-hidden="true"><i class="bi bi-search"></i></span>
-                        <input
-                            type="search"
-                            id="searchInput"
-                            name="q"
-                            class="form-control"
-                            placeholder="Cari produk..."
-                            autocomplete="off"
-                            value="{{ request('q', '') }}">
-                    </div>
-                </form>
-
-                <div class="navbar-links">
-                    <ul class="navbar-nav flex-row align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#product-list">Produk</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link cart-link" href="{{ route('cart.page') }}" aria-label="Keranjang">
-                                <i class="bi bi-cart3" aria-hidden="true"></i>
-                                <span class="cart-badge" id="cart-count">0</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    @include('template.navbar')
 
     <main>
         <section class="hero">
@@ -146,9 +106,14 @@
                                         <a class="btn btn-primary w-100 mt-3" href="#product-list">
                                             <i class="bi bi-eye me-1" aria-hidden="true"></i>Detail Produk
                                         </a>
-                                        <button class="btn btn-warning w-100 mt-3" type="button">
-                                            <i class="bi bi-cart-plus me-1" aria-hidden="true"></i>Tambah ke Keranjang
-                                        </button>
+                                        <form method="post" action="{{ route('cart.update') }}">
+                                            @csrf
+                                            <input type="hidden" name="action" value="add_to_cart">
+                                            <input type="hidden" name="product_id" value="{{ $product['id'] }}">
+                                            <button class="btn btn-warning w-100 mt-3" type="submit">
+                                                <i class="bi bi-cart-plus me-1" aria-hidden="true"></i>Tambah ke Keranjang
+                                            </button>
+                                        </form>
                                     </div>
                                 </article>
                             </div>
